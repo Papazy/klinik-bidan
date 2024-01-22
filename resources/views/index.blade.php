@@ -217,7 +217,7 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
                     <p class="lead mb-0">
                         JL.Moh Hatta RT V RW VIII No.13- Handil III Telp.0541-691891, FAX 0541-691892
                         <br />
-                        Kecamatan Muarajawa, Kutai Kartanegara - Indonesia
+                        Desa Pulo Ara, Kota Juang, Bireuen, Aceh
                     </p>
                 </div>
                 <!-- Footer Social Icons-->
@@ -236,8 +236,8 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
                 <div class="col-lg-4">
                     <h4 class="text-uppercase mb-4">Tentang Klinik</h4>
                     <p class="lead mb-0">
-                        Klinik {{ env('APP_NAME') }} dibangun sejak tahun 2002 yang berada di kecamatan Muarajawa - Kutai
-                        Kartanegara
+                        Klinik {{ env('APP_NAME') }}berada di Desa
+                        Pulo Ara, Kota Juang, Bireuen, Aceh
                     </p>
                 </div>
             </div>
