@@ -245,7 +245,7 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
     </footer>
     <!--------------------------------------------------------copyright----------------------------------------------------------------------------------->
     <div class="copyright py-4 text-center text-white">
-        <div class="container"><small>Copyright &copy; Klinik {{ env('APP_NAME') }} 2022</small></div>
+        <div class="container"><small>Copyright &copy; Klinik {{ env('APP_NAME') }} 2023</small></div>
     </div>
     <!-- Portfolio Modals-->
 
