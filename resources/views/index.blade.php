@@ -13,7 +13,7 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
     <meta name="author" content="" />
     <title>KLINIK {{ env('APP_NAME') }}</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="assets/img/miniLogo.ico" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"
@@ -25,7 +25,7 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
         type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles-index.css" rel="stylesheet" />
-    <link href="{{ asset('img/icon.ico') }}" rel="SHORTCUT ICON" />
+    <link href="{{ asset('img/miniLogo.ico') }}" rel="SHORTCUT ICON" />
 </head>
 
 <body id="page-top" onload="initClock()">
@@ -33,7 +33,7 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
     <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
         <div class="container">
             <a class="navbar-brand" href="#page-top"><img src="{{ asset('img/logo.png') }}" style=”float:left;
-                    width="55";height="55"” />KLINIK</a>
+                    width="55";height="55"” /></a>
             <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button"
                 data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
                 aria-expanded="false" aria-label="Toggle navigation">
