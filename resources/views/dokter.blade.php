@@ -48,7 +48,7 @@
 
                             </-------------------------------------------------------- edit
                                 -----------------------------------------------------------------------------------* />
-                            <td class="text-sm">
+                            <td class="text-sm d-flex flex-row align-items-center">
                                 <a href="{{ route('dokter.edit', $d->id) }}" class="btn btn-warning" data-bs-toggle="tooltip"
                                     data-bs-original-title="Edit Dokter">
                                     <i class="fas fa-pen text-white"></i>

@@ -21,7 +21,7 @@
         </-------------------------------------------------------- Tabel
             -----------------------------------------------------------------------------------* />
         <a href="/jadwal/create" type="button" class="btn btn-success">
-            <i class="fas fa-plus text-white"></i> <i class="fas fa-calendar text-white"></i>  Tambah Jadwal Praktek</a>
+            <i class="fas fa-plus text-white"></i> <i class="fas fa-calendar text-white"> </i>  Tambah Jadwal Praktek</a>
 
         <div class="table-responsive">
             <table class="table table-flush" id="products-list">
