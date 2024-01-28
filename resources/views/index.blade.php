@@ -1,5 +1,5 @@
 <?php
-$mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073!2d117.22912786566681!3d-0.8342596379442541!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xcd748a34b972a55b!2sKlinik%20Maju%20Sejahtera!5e1!3m2!1sid!2sid!4v1664207204197!5m2!1sid!2sid";
+$mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073!2d117.22912786566681!3d-0.8342596379442541!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xcd748a34b972a55b!2sKlinik%20Maju%20Sejahtera!5e1!3m2!1sid!2sid!4v1664207204197!5m2!1sid!2sid";
 ?>
 
 
@@ -16,13 +16,10 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
     <link rel="icon" type="image/x-icon" href="assets/img/miniLogo.ico" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"
-        integrity="sha512-tVYBzEItJit9HXaWTPo8vveXlkK62LbA+wez9IgzjTmFNLMBO1BEYladBw2wnM3YURZSMUyhayPCoLtjGh84NQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js" integrity="sha512-tVYBzEItJit9HXaWTPo8vveXlkK62LbA+wez9IgzjTmFNLMBO1BEYladBw2wnM3YURZSMUyhayPCoLtjGh84NQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Google fonts-->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
-        type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles-index.css" rel="stylesheet" />
     <link href="{{ asset('img/miniLogo.ico') }}" rel="SHORTCUT ICON" />
@@ -32,11 +29,8 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="#page-top"><img src="{{ asset('img/logo.png') }}" style=”float:left;
-                    width="55";height="55"” /></a>
-            <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button"
-                data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
-                aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="#page-top"><img src="{{ asset('img/icon.ico') }}" style=”float:left; width="55" ;height="55" ” /></a>
+            <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
                 <i class="fas fa-bars"></i>
             </button>
@@ -63,14 +57,11 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
             <!--------------------------------------------------------NAVBAR----------------------------------------------------------------------------------->
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="#portfolio">Tentang
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">Tentang
                             kami</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="#about">Pendaftaran</a>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">Pendaftaran</a>
                     </li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="#contact">Alamat</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Alamat</a></li>
                 </ul>
             </div>
         </div>
@@ -80,7 +71,7 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
     <header class="masthead bg-primary text-white text-center">
         <div class="container d-flex align-items-center flex-column">
             <!-- Masthead Avatar Image-->
-            <img class="masthead-avatar mb-5" src="img/logo.png" alt="..." />
+            <img class="masthead-avatar mb-5" src="img/icon.ico" alt="..." />
             <!-- Masthead Heading-->
             <h1 class="masthead-heading text-uppercase mb-0">Klinik {{ env('APP_NAME') }}</h1>
             <!-- Icon Divider-->
@@ -109,10 +100,8 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
                 <!-- Portfolio Item 1-->
                 <div class="col-md-6 col-lg-4 mb-5">
                     <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fas fa-plus fa-3x"></i></div>
+                        <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
                         <img class="img-fluid" src="img/dalam2.jpg" alt="..." />
                     </div>
@@ -120,10 +109,8 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
                 <!-- Portfolio Item 2-->
                 <div class="col-md-6 col-lg-4 mb-5">
                     <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal2">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fas fa-plus fa-3x"></i></div>
+                        <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
                         <img class="img-fluid" src="img/dalam1.jpg" alt="..." />
                     </div>
@@ -131,10 +118,8 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
                 <!-- Portfolio Item 3-->
                 <div class="col-md-6 col-lg-4 mb-5">
                     <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal3">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fas fa-plus fa-3x"></i></div>
+                        <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
                         <img class="img-fluid" src="img/luar1.jpg" alt="..." />
                     </div>
@@ -158,8 +143,7 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
             <!--------------------------------------------------------Daftar sebagai Pasien----------------------------------------------------------------------------------->
             <div class="row">
                 <div class="col-lg-4 ms-auto">
-                    <button class="btn btn-xl btn-outline-light" data-bs-toggle="modal"
-                        data-bs-target="#daftarPasien">
+                    <button class="btn btn-xl btn-outline-light" data-bs-toggle="modal" data-bs-target="#daftarPasien">
                         <i class="fas fa-book me-2"></i>
                         Daftar Sebagai Pasien
                     </button>
@@ -196,8 +180,7 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
             </div>
 
 
-            <div class="google-map"><iframe frameborder="0" style="border:0" width="100%" height="250"
-                    src=<?php echo $mappp; ?> allowfullscreen=""></iframe></div>
+            <div class="google-map"><iframe frameborder="0" style="border:0" width="100%" height="250" src=<?php echo $mappp; ?> allowfullscreen=""></iframe></div>
 
 
             <div class="divider-custom">
@@ -215,29 +198,22 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
                 <div class="col-lg-4 mb-5 mb-lg-0">
                     <h4 class="text-uppercase mb-4">Lokasi</h4>
                     <p class="lead mb-0">
-                        JL.Moh Hatta RT V RW VIII No.13- Handil III Telp.0541-691891, FAX 0541-691892
-                        <br />
-                        Desa Pulo Ara, Kota Juang, Bireuen, Aceh
+                        Jl. Gajah Lr. T.Umar Desa No.5, Pulo Ara Geudong Teungoh, Kec. Kota Juang, Kabupaten Bireuen, Aceh 24251
                     </p>
                 </div>
                 <!-- Footer Social Icons-->
                 <div class="col-lg-4 mb-5 mb-lg-0">
                     <h4 class="text-uppercase mb-4">Media Social</h4>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
-                            class="fab fa-fw fa-facebook-f"></i></a>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
-                            class="fab fa-fw fa-twitter"></i></a>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
-                            class="fab fa-fw fa-linkedin-in"></i></a>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
-                            class="fab fa-fw fa-dribbble"></i></a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-linkedin-in"></i></a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>
                 </div>
                 <!-- Footer About Text-->
                 <div class="col-lg-4">
                     <h4 class="text-uppercase mb-4">Tentang Klinik</h4>
                     <p class="lead mb-0">
-                        Klinik {{ env('APP_NAME') }}berada di Desa
-                        Pulo Ara, Kota Juang, Bireuen, Aceh
+                        Klinik {{ env('APP_NAME') }} adalah klinik mandiri persalinan
                     </p>
                 </div>
             </div>
@@ -245,13 +221,12 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
     </footer>
     <!--------------------------------------------------------copyright----------------------------------------------------------------------------------->
     <div class="copyright py-4 text-center text-white">
-        <div class="container"><small>Copyright &copy; Klinik {{ env('APP_NAME') }} 2023</small></div>
+        <div class="container"><small>Copyright &copy; Klinik {{ env('APP_NAME') }} 2024</small></div>
     </div>
     <!-- Portfolio Modals-->
 
     <!-- Portfolio Modal 2-->
-    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" aria-labelledby="portfolioModal2"
-        aria-hidden="true">
+    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" aria-labelledby="portfolioModal2" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header border-0">
@@ -286,8 +261,7 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
         </div>
     </div>
     <!-- Portfolio Modal 3-->
-    <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" aria-labelledby="portfolioModal3"
-        aria-hidden="true">
+    <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" aria-labelledby="portfolioModal3" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header border-0">
@@ -322,8 +296,7 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
         </div>
     </div>
     <!-- Portfolio Modal 4-->
-    <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" aria-labelledby="portfolioModal4"
-        aria-hidden="true">
+    <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" aria-labelledby="portfolioModal4" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header border-0">
@@ -358,8 +331,7 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
         </div>
     </div>
     <!-- Portfolio Modal 5-->
-    <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" aria-labelledby="portfolioModal5"
-        aria-hidden="true">
+    <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" aria-labelledby="portfolioModal5" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header border-0">
@@ -396,19 +368,14 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
 
     <!-- Daftar Pasien Modalllllllllllll -->
     <!-- Daftar Pasien Modal -->
-    <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
-        id="daftarPasien" tabindex="-1" aria-labelledby="daftarPasienLabel" aria-modal="true" role="dialog">
+    <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto" id="daftarPasien" tabindex="-1" aria-labelledby="daftarPasienLabel" aria-modal="true" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-lg relative w-auto pointer-events-none" role="document">
-            <div
-                class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
-                <div
-                    class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+            <div class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+                <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
                     <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalLgLabel">
                         Daftar Sebagai Pasien
                     </h5>
-                    <button type="button"
-                        class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
-                        data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="{{ route('pasien.store') }}" method="post">
                     @csrf
@@ -416,8 +383,7 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
                     <div class="modal-body relative p-4">
                         <a href="pasien-lama" type="button" class="btn btn-warning">Pasien Lama?</a>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#daftarPasienbaru">Pasien Baru?</button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#daftarPasienbaru">Pasien Baru?</button>
                     </div>
                     <div class="modal-footer">
 
@@ -432,20 +398,14 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
 
 
     <!-- Daftar Pasien Modal -->
-    <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
-        id="daftarPasienbaru" tabindex="-1" aria-labelledby="daftarPasienbaruLabel" aria-modal="true"
-        role="dialog">
+    <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto" id="daftarPasienbaru" tabindex="-1" aria-labelledby="daftarPasienbaruLabel" aria-modal="true" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-lg relative w-auto pointer-events-none" role="document">
-            <div
-                class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
-                <div
-                    class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+            <div class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+                <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
                     <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalLgLabel">
                         Daftar Sebagai Pasien Baru
                     </h5>
-                    <button type="button"
-                        class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
-                        data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="{{ route('pasien.store') }}" method="post">
                     @csrf
@@ -454,8 +414,7 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
 
                         <!--------------------------------------------------------pasien lama----------------------------------------------------------------------------------->
                         <div class="form-group row">
-                            <label class="col-sm-5 col-form-label"><a href="pasien-lama" type="button"
-                                    class="btn btn-warning">Pasien Lama klik disini</a></label>
+                            <label class="col-sm-5 col-form-label"><a href="pasien-lama" type="button" class="btn btn-warning">Pasien Lama klik disini</a></label>
                             <div class="col-sm">
                             </div>
                         </div>
@@ -465,18 +424,14 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Nama</label>
                             <div class="col-sm">
-                                <input type="text" class="form-control" name="Nama" placeholder="Nama"
-                                    required oninvalid="this.setCustomValidity('nama tidak boleh kosong')"
-                                    oninput="setCustomValidity('')">
+                                <input type="text" class="form-control" name="Nama" placeholder="Nama" required oninvalid="this.setCustomValidity('nama tidak boleh kosong')" oninput="setCustomValidity('')">
                             </div>
                         </div>
                         <!--------------------------------------------------------Alamat----------------------------------------------------------------------------------->
                         <div class="form-group row mt-2">
                             <label class="col-sm-2 col-form-label">Alamat</label>
                             <div class="col-sm">
-                                <input type="text" class="form-control" name="Alamat" placeholder="Alamat"
-                                    required oninvalid="this.setCustomValidity('alamat masih kosong')"
-                                    oninput="setCustomValidity('')">
+                                <input type="text" class="form-control" name="Alamat" placeholder="Alamat" required oninvalid="this.setCustomValidity('alamat masih kosong')" oninput="setCustomValidity('')">
                             </div>
                         </div>
 
@@ -485,9 +440,7 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
                         <div class="form-group row mt-2">
                             <label class="col-sm-2 col-form-label">Lahir</label>
                             <div class="col-sm">
-                                <input type="date" class="form-control" name="Lahir" placeholder="Lahir"
-                                    required oninvalid="this.setCustomValidity('tanggal lahir tidak boleh kosong')"
-                                    oninput="setCustomValidity('')">
+                                <input type="date" class="form-control" name="Lahir" placeholder="Lahir" required oninvalid="this.setCustomValidity('tanggal lahir tidak boleh kosong')" oninput="setCustomValidity('')">
                             </div>
                         </div>
 
@@ -495,10 +448,7 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
                         <div class="form-group row mt-2">
                             <label class="col-sm-2 col-form-label">NIK</label>
                             <div class="col-sm">
-                                <input type="text" class="form-control" id="nonik" name="NIK"
-                                    placeholder="NIK" required
-                                    oninvalid="this.setCustomValidity('Nomer induk harus berupa Angka')"
-                                    oninput="setCustomValidity('')">
+                                <input type="text" class="form-control" id="nonik" name="NIK" placeholder="NIK" required oninvalid="this.setCustomValidity('Nomer induk harus berupa Angka')" oninput="setCustomValidity('')">
                             </div>
                         </div>
 
@@ -508,9 +458,7 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
                         <div class="form-group row mt-2">
                             <label class="col-form-label col-sm-2 pt-0">Jenis Kelamin</label>
                             <div class="col-sm">
-                                <select name="Kelamin" class="form-control " required
-                                    oninvalid="this.setCustomValidity('jenis kelamin tidak boleh kosong')"
-                                    oninput="setCustomValidity('')">
+                                <select name="Kelamin" class="form-control " required oninvalid="this.setCustomValidity('jenis kelamin tidak boleh kosong')" oninput="setCustomValidity('')">
 
                                     <option selected value="">pilih...</option>
                                     <option value="laki-laki">Laki-laki
@@ -525,10 +473,7 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
                         <div class="form-group row mt-2">
                             <label class="col-sm-2 col-form-label">Telepon</label>
                             <div class="col-sm">
-                                <input type="text" class="form-control" id="notelp" name="Telepon"
-                                    placeholder="Nomer Telepon (aktif)"
-                                    oninvalid="this.setCustomValidity('nomer telepon harus berupa Angka')"
-                                    oninput="setCustomValidity('')" required>
+                                <input type="text" class="form-control" id="notelp" name="Telepon" placeholder="Nomer Telepon (aktif)" oninvalid="this.setCustomValidity('nomer telepon harus berupa Angka')" oninput="setCustomValidity('')" required>
                             </div>
                         </div>
 
@@ -538,9 +483,7 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
                         <div class="form group row mt-2">
                             <label class="col-form-label col-sm-2 pt-0">Agama</label>
                             <div class="col-sm">
-                                <select name="Agama" class="form-control" required
-                                    oninvalid="this.setCustomValidity('agama tidak boleh kosong')"
-                                    oninput="setCustomValidity('')">
+                                <select name="Agama" class="form-control" required oninvalid="this.setCustomValidity('agama tidak boleh kosong')" oninput="setCustomValidity('')">
                                     <option selected value="">-</option>
                                     <option value="islam">Islam</option>
                                     <option value="protestan">Kristen
@@ -572,10 +515,7 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
                         <div class="form-group row mt-2">
                             <label class="col-sm-2 col-form-label">Pekerjaan</label>
                             <div class="col-sm">
-                                <input type="text" class="form-control" name="Pekerjaan"
-                                    placeholder="Isi '-' jika belum/tidak bekerja" required
-                                    oninvalid="this.setCustomValidity('Isi  -  jika belum/tidak bekerja')"
-                                    oninput="setCustomValidity('')">
+                                <input type="text" class="form-control" name="Pekerjaan" placeholder="Isi '-' jika belum/tidak bekerja" required oninvalid="this.setCustomValidity('Isi  -  jika belum/tidak bekerja')" oninput="setCustomValidity('')">
                             </div>
                         </div>
 
@@ -586,9 +526,7 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
                         <div class="form-group row mt-2">
                             <label class="col-form-label col-sm-2 pt-0">Layanan</label>
                             <div class="col-sm">
-                                <select name="layanan" class="form-control " required
-                                    oninvalid="this.setCustomValidity('pilih layanan dahulu')"
-                                    oninput="setCustomValidity('')">
+                                <select name="layanan" class="form-control " required oninvalid="this.setCustomValidity('pilih layanan dahulu')" oninput="setCustomValidity('')">
                                     <option value="">pilih layanan...</option>
                                     <option value="Umum">Umum</option>
                                     <option value="Asuransi">Asuransi</option>
@@ -601,9 +539,7 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
                             <div class="col-sm">
                                 {{-- <input type="text" class="form-control" name="RekamMedis"
                                     placeholder="Anda sakit apa, dan sudah berapa lama?"> --}}
-                                <textarea type="text" name="RekamMedis" class="form-control" cols="30" rows="5"
-                                    placeholder="Jelaskan keluhan anda, dan sudah berapa lama?" required
-                                    oninvalid="this.setCustomValidity('jelaskan dahulu...')" oninput="setCustomValidity('')"></textarea>
+                                <textarea type="text" name="RekamMedis" class="form-control" cols="30" rows="5" placeholder="Jelaskan keluhan anda, dan sudah berapa lama?" required oninvalid="this.setCustomValidity('jelaskan dahulu...')" oninput="setCustomValidity('')"></textarea>
                             </div>
                         </div>
 
@@ -611,16 +547,14 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
                         <div class="form-group row mt-2">
                             <label class="col-form-label col-sm-2 pt-0">Dokter</label>
                             <div class="col-sm">
-                                <select name="doktor" class="form-control " required
-                                    oninvalid="this.setCustomValidity('Silahkan pilih dokter yang tersedia')"
-                                    oninput="setCustomValidity('')">
+                                <select name="doktor" class="form-control " required oninvalid="this.setCustomValidity('Silahkan pilih dokter yang tersedia')" oninput="setCustomValidity('')">
                                     <option value="">pilih dokter...</option>
                                     @foreach ($dokter as $row)
                                     <option {{ $row->jadwal->jadwalpraktek == 'LIBUR' ? 'disabled' : ''}} {{ $row->jadwal->jadwalpraktek == 'CUTI' ? 'disabled' : ''}} value="{{ $row->id }}">
-                                            {{ $row->nama }}({{ $row->poli == '' ? '-' : $row->poli->name }}) |
-                                            {{ $row->jadwal == '' ? 'Belum ada Jadwal' : $row->jadwal->jadwalpraktek }}
-                                            
-                                        </option>
+                                        {{ $row->nama }}({{ $row->poli == '' ? '-' : $row->poli->name }}) |
+                                        {{ $row->jadwal == '' ? 'Belum ada Jadwal' : $row->jadwal->jadwalpraktek }}
+
+                                    </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -647,32 +581,25 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
 
 
     <!--------------------------------------------------------modal kartu antrian----------------------------------------------------------------------------------->
-    <div class="modal fade" id="antrian" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="antrianLabel" aria-hidden="true">
+    <div class="modal fade" id="antrian" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="antrianLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div id="kartuantrian">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel">
-                            <img src="{{ asset('img/logo.png') }}" style=”float:left;
-                                width="55";height="55"” />Klinik {{ env('APP_NAME') }}
+                            <img src="{{ asset('img/logo.png') }}" style=”float:left; width="55" ;height="55" ” />Klinik {{ env('APP_NAME') }}
                         </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p class="h3">Nomor Antrian : <span
-                                class="text-primary">{{ Session::has('nomorAntrian') ? Session::get('nomorAntrian') : '' }}</span>
+                        <p class="h3">Nomor Antrian : <span class="text-primary">{{ Session::has('nomorAntrian') ? Session::get('nomorAntrian') : '' }}</span>
                         </p>
-                        <p class="h3">Atas Nama : <span
-                                class="text-primary">{{ Session::has('nama') ? Session::get('nama') : '' }}</span></p>
-                        <p>Daftar pada jam : <span
-                                class="text-primary">{{ Session::has('timestamps') ? Session::get('timestamps') : '' }}</span>
+                        <p class="h3">Atas Nama : <span class="text-primary">{{ Session::has('nama') ? Session::get('nama') : '' }}</span></p>
+                        <p>Daftar pada jam : <span class="text-primary">{{ Session::has('timestamps') ? Session::get('timestamps') : '' }}</span>
                         </p>
                     </div>
                     <div class="modal-footer">
-                        <p>Tanggal : <span
-                                class="text-primary">{{ Session::has('tanggaldaftar') ? Session::get('tanggaldaftar') : '' }}</span>
+                        <p>Tanggal : <span class="text-primary">{{ Session::has('tanggaldaftar') ? Session::get('tanggaldaftar') : '' }}</span>
                         </p>
 
                         <a type="button" class="btn btn-secondary" href="/antrian-pasien">
@@ -687,24 +614,21 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
     </div>
 
     <!--------------------------------------------------------modal error----------------------------------------------------------------------------------->
-    <div class="modal fade" id="error" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="antrianLabel" aria-hidden="true">
+    <div class="modal fade" id="error" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="antrianLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div id="kartuantrian">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel">
-                            <img src="{{ asset('img/logo.png') }}" style=”float:left;
-                                width="55";height="55"” />Klinik {{ env('APP_NAME') }}
+                            <img src="{{ asset('img/logo.png') }}" style=”float:left; width="55" ;height="55" ” />Klinik {{ env('APP_NAME') }}
                         </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         @foreach ($errors->all() as $item)
-                            <div class="alert alert-danger" role="alert">
-                                {{ $item }}
-                            </div>
+                        <div class="alert alert-danger" role="alert">
+                            {{ $item }}
+                        </div>
                         @endforeach
                     </div>
                 </div>
@@ -726,18 +650,18 @@ $mappp= "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073
 
     <!--------------------------------------------------------modal antrian----------------------------------------------------------------------------------->
     @if ($errors->any())
-        <script>
-            $(document).ready(function() {
-                $('#error').modal('show')
-            });
-        </script>
+    <script>
+        $(document).ready(function() {
+            $('#error').modal('show')
+        });
+    </script>
     @endif
 
     <script>
-        @if (Session::has('nomorAntrian'))
-            $(document).ready(function() {
-                $('#antrian').modal('show')
-            });
+        @if(Session::has('nomorAntrian'))
+        $(document).ready(function() {
+            $('#antrian').modal('show')
+        });
         @endif
     </script>
     <!--------------------------------------------------------fungsi inputan angka/number only----------------------------------------------------------------------------------->

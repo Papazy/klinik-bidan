@@ -11,13 +11,10 @@
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"
-        integrity="sha512-tVYBzEItJit9HXaWTPo8vveXlkK62LbA+wez9IgzjTmFNLMBO1BEYladBw2wnM3YURZSMUyhayPCoLtjGh84NQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js" integrity="sha512-tVYBzEItJit9HXaWTPo8vveXlkK62LbA+wez9IgzjTmFNLMBO1BEYladBw2wnM3YURZSMUyhayPCoLtjGh84NQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Google fonts-->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
-        type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles-index.css" rel="stylesheet" />
     <link href="{{ asset('img/icon.ico') }}" rel="SHORTCUT ICON" />
@@ -27,11 +24,8 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="#page-top"><img src="{{ asset('img/logo.png') }}" style=”float:left;
-                    width="55";height="55"” />KLINIK</a>
-            <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button"
-                data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
-                aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="#page-top"><img src="{{ asset('img/logo.png') }}" style=”float:left; width="55" ;height="55" ” />KLINIK</a>
+            <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
                 <i class="fas fa-bars"></i>
             </button>
@@ -58,14 +52,11 @@
             <!--------------------------------------------------------NAVBAR----------------------------------------------------------------------------------->
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="/#portfolio">Tentang
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/#portfolio">Tentang
                             kami</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="/#about">Pendaftaran</a>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/#about">Pendaftaran</a>
                     </li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="/#contact">Alamat</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/#contact">Alamat</a></li>
                 </ul>
             </div>
         </div>
@@ -95,21 +86,18 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Nama Lengkap</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" name="Nama" placeholder="Nama Lengkap"
-                            required="required" oninvalid="this.setCustomValidity('Nama tidak boleh kosong')"
-                            oninput="setCustomValidity('')">
+                        <input type="text" class="form-control" name="Nama" placeholder="Nama Lengkap" required="required" oninvalid="this.setCustomValidity('Nama tidak boleh kosong')" oninput="setCustomValidity('')">
                     </div>
                 </div>
                 </--------------------------------------------------------Lahir-----------------------------------------------------------------------------------* />
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Lahir</label>
                     <div class="col-sm-5">
-                        <input type="date" class="form-control @error('Lahir') is-invalid @enderror" name="Lahir"
-                            placeholder="Lahir">
+                        <input type="date" class="form-control @error('Lahir') is-invalid @enderror" name="Lahir" placeholder="Lahir">
                         @error('Lahir')
-                            <div class="invalid-feedback">
-                                "tanggal lahir masih kosong
-                            </div>
+                        <div class="invalid-feedback">
+                            "tanggal lahir masih kosong
+                        </div>
                         @enderror
                     </div>
                 </div>
@@ -122,18 +110,15 @@
 
     <!--------------------------------------------------------modal kartu pasien----------------------------------------------------------------------------------->
 
-    <div class="modal fade" id="pasienlamas" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="antrianLabel" aria-hidden="true">
+    <div class="modal fade" id="pasienlamas" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="antrianLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div id="kartuantrian">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel">
-                            <img src="{{ asset('img/logo.png') }}" style=”float:left;
-                                width="55";height="55"” />Klinik {{ env('APP_NAME') }}
+                            <img src="{{ asset('img/logo.png') }}" style=”float:left; width="55" ;height="55" ” />Klinik {{ env('APP_NAME') }}
                         </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <p class="h3">Data Pasien Ditemukan</p>
@@ -149,15 +134,12 @@
                         <form action="addrekam" method="POST">
                             @csrf
                             <div class="form-group row mt-2">
-                                <input type="text" value="{{ Session::get('id') }}" name="id_player" readonly
-                                    hidden>
+                                <input type="text" value="{{ Session::get('id') }}" name="id_player" readonly hidden>
                             </div>
                             <div class="form-group row mt-2">
                                 <label class="col-form-label col-sm-2 pt-0">Layanan</label>
                                 <div class="col-sm">
-                                    <select name="layanan" class="form-control " required
-                                        oninvalid="this.setCustomValidity('Pribadi / Asuransi?')"
-                                        oninput="setCustomValidity('')">
+                                    <select name="layanan" class="form-control " required oninvalid="this.setCustomValidity('Pribadi / Asuransi?')" oninput="setCustomValidity('')">
                                         <option value="">pilih layanan...</option>
                                         <option value="Umum">Umum</option>
                                         <option value="Asuransi">Asuransi</option>
@@ -168,9 +150,7 @@
                             <div class="form-group row mt-2">
                                 <label class="col-sm-2 col-form-label">Keluhan</label>
                                 <div class="col-sm">
-                                    <textarea type="text" name="keluhan" class="form-control" cols="30" rows="5"
-                                        placeholder="Jelaskan keluhan anda, dan sudah berapa lama?" required
-                                        oninvalid="this.setCustomValidity('jelaskan keluhan anda...')" oninput="setCustomValidity('')"></textarea>
+                                    <textarea type="text" name="keluhan" class="form-control" cols="30" rows="5" placeholder="Jelaskan keluhan anda, dan sudah berapa lama?" required oninvalid="this.setCustomValidity('jelaskan keluhan anda...')" oninput="setCustomValidity('')"></textarea>
                                 </div>
                             </div>
 
@@ -178,15 +158,13 @@
                             <div class="form-group row mt-2">
                                 <label class="col-form-label col-sm-2 pt-0">Dokter</label>
                                 <div class="col-sm">
-                                    <select name="dokter" class="form-control " required
-                                        oninvalid="this.setCustomValidity('pilih dokter yang tersedia...')"
-                                        oninput="setCustomValidity('')">
+                                    <select name="dokter" class="form-control " required oninvalid="this.setCustomValidity('pilih dokter yang tersedia...')" oninput="setCustomValidity('')">
                                         <option value="">pilih dokter...</option>
                                         @foreach ($dokter as $row)
-                                            <option value="{{ $row->id }}">
-                                                {{ $row->nama }}({{ $row->poli == '' ? '-' : $row->poli->name }}) |
-                                                {{ $row->jadwal == '' ? 'Belum ada Jadwal' : $row->jadwal->jadwalpraktek }}
-                                            </option>
+                                        <option value="{{ $row->id }}">
+                                            {{ $row->nama }}({{ $row->poli == '' ? '-' : $row->poli->name }}) |
+                                            {{ $row->jadwal == '' ? 'Belum ada Jadwal' : $row->jadwal->jadwalpraktek }}
+                                        </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -209,18 +187,15 @@
         </div>
     </div>
 
-    <div class="modal fade" id="pasienlamaf" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="antrianLabel" aria-hidden="true">
+    <div class="modal fade" id="pasienlamaf" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="antrianLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div id="kartuantrian">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel">
-                            <img src="{{ asset('img/logo.png') }}" style=”float:left;
-                                width="55";height="55"” />Klinik {{ env('APP_NAME') }}
+                            <img src="{{ asset('img/logo.png') }}" style=”float:left; width="55" ;height="55" ” />Klinik {{ env('APP_NAME') }}
                         </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body text-center">
                         <p class="h3">Data Pasien</p>
@@ -242,22 +217,16 @@
                 <div class="col-lg-4 mb-5 mb-lg-0">
                     <h4 class="text-uppercase mb-4">Lokasi</h4>
                     <p class="lead mb-0">
-                        JL.Antah Berantah Telp.0000-0000, FAX 0000-0000
-                        <br />
-                        Antah Berantah, Berantah - Indonesia
+                        Jl. Gajah Lr. T.Umar Desa No.5, Pulo Ara Geudong Teungoh, Kec. Kota Juang, Kabupaten Bireuen, Aceh 24251
                     </p>
                 </div>
                 <!-- Footer Social Icons-->
                 <div class="col-lg-4 mb-5 mb-lg-0">
                     <h4 class="text-uppercase mb-4">Media Social</h4>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
-                            class="fab fa-fw fa-facebook-f"></i></a>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
-                            class="fab fa-fw fa-twitter"></i></a>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
-                            class="fab fa-fw fa-linkedin-in"></i></a>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
-                            class="fab fa-fw fa-dribbble"></i></a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-linkedin-in"></i></a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>
                 </div>
                 <!-- Footer About Text-->
                 <div class="col-lg-4">
@@ -276,33 +245,26 @@
         <div class="container"><small>Copyright &copy; Klinik {{ env('APP_NAME') }} 2022</small></div>
     </div>
     <!--------------------------------------------------------modal kartu antrian----------------------------------------------------------------------------------->
-    <div class="modal fade" id="antrian" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="antrianLabel" aria-hidden="true">
+    <div class="modal fade" id="antrian" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="antrianLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div id="kartuantrian2">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel">
-                            <img src="{{ asset('img/logo.png') }}" style=”float:left;
-                                width="55";height="55"” />Klinik {{ env('APP_NAME') }}
+                            <img src="{{ asset('img/logo.png') }}" style=”float:left; width="55" ;height="55" ” />Klinik {{ env('APP_NAME') }}
                         </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p class="h3">Nomor Antrian : <span
-                                class="text-primary">{{ Session::has('nomorAntrian') ? Session::get('nomorAntrian') : '' }}</span>
+                        <p class="h3">Nomor Antrian : <span class="text-primary">{{ Session::has('nomorAntrian') ? Session::get('nomorAntrian') : '' }}</span>
                         </p>
-                        <p class="h3">Atas Nama : <span
-                                class="text-primary">{{ Session::has('nama') ? Session::get('nama') : '' }}</span>
+                        <p class="h3">Atas Nama : <span class="text-primary">{{ Session::has('nama') ? Session::get('nama') : '' }}</span>
                         </p>
-                        <p>Daftar pada jam : <span
-                                class="text-primary">{{ Session::has('timestamps') ? Session::get('timestamps') : '' }}</span>
+                        <p>Daftar pada jam : <span class="text-primary">{{ Session::has('timestamps') ? Session::get('timestamps') : '' }}</span>
                         </p>
                     </div>
                     <div class="modal-footer">
-                        <p>Tanggal : <span
-                                class="text-primary">{{ Session::has('tanggaldaftar') ? Session::get('tanggaldaftar') : '' }}</span>
+                        <p>Tanggal : <span class="text-primary">{{ Session::has('tanggaldaftar') ? Session::get('tanggaldaftar') : '' }}</span>
                         </p>
 
                         <a type="button" class="btn btn-secondary" href="/antrian-pasien">
@@ -317,24 +279,21 @@
     </div>
 
     <!--------------------------------------------------------modal error----------------------------------------------------------------------------------->
-    <div class="modal fade" id="error" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="antrianLabel" aria-hidden="true">
+    <div class="modal fade" id="error" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="antrianLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div id="kartuantrian">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel">
-                            <img src="{{ asset('img/logo.png') }}" style=”float:left;
-                                width="55";height="55"” />Klinik {{ env('APP_NAME') }}
+                            <img src="{{ asset('img/logo.png') }}" style=”float:left; width="55" ;height="55" ” />Klinik {{ env('APP_NAME') }}
                         </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         @foreach ($errors->all() as $item)
-                            <div class="alert alert-danger" role="alert">
-                                {{ $item }}
-                            </div>
+                        <div class="alert alert-danger" role="alert">
+                            {{ $item }}
+                        </div>
                         @endforeach
                     </div>
                 </div>
@@ -358,35 +317,35 @@
 
     <!--------------------------------------------------------modal antrian----------------------------------------------------------------------------------->
     @if ($errors->any())
-        <script>
-            $(document).ready(function() {
-                $('#error').modal('show')
-            });
-        </script>
+    <script>
+        $(document).ready(function() {
+            $('#error').modal('show')
+        });
+    </script>
     @endif
 
     <script>
-        @if (Session::has('success'))
-            $(document).ready(function() {
-                $('#pasienlamas').modal('show')
-            });
-        @elseif (Session::has('failed'))
-            $(document).ready(function() {
-                $('#pasienlamaf').modal('show')
-            });
-        @elseif (Session::has('addsuccess'))
-            $(document).ready(function() {
-                $('#antrian').modal('show')
-            });
+        @if(Session::has('success'))
+        $(document).ready(function() {
+            $('#pasienlamas').modal('show')
+        });
+        @elseif(Session::has('failed'))
+        $(document).ready(function() {
+            $('#pasienlamaf').modal('show')
+        });
+        @elseif(Session::has('addsuccess'))
+        $(document).ready(function() {
+            $('#antrian').modal('show')
+        });
         @endif
     </script>
 
     <!--------------------------------------------------------modal antrian----------------------------------------------------------------------------------->
     <script>
-        @if (Session::has('nomorAntrian'))
-            $(document).ready(function() {
-                $('#antrian').modal('show')
-            });
+        @if(Session::has('nomorAntrian'))
+        $(document).ready(function() {
+            $('#antrian').modal('show')
+        });
         @endif
     </script>
     <!--------------------------------------------------------fungsi inputan angka/number only----------------------------------------------------------------------------------->
