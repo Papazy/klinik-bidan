@@ -26,26 +26,26 @@ class DatabaseSeeder extends Seeder
             'is_superadmin' => 1,
             'password' => Hash::make('admin'),
         ]);
-        $polis = [
-            ['name' => 'Poli Umum'],
-            ['name' => 'Poli Bedah'],
-            ['name' => 'Poli Anak'],
-            ['name' => 'Poli Kandungan dan Obstetri'],
-            ['name' => 'Poli Gigi'],
-            ['name' => 'Poli Mata'],
-            ['name' => 'Poli Jantung'],
-            ['name' => 'Poli Kulit dan Kelamin'],
-            ['name' => 'Poli Psikiatri'],
-            ['name' => 'Poli THT (Telinga, Hidung, Tenggorokan)'],
-            ['name' => 'Poli Gizi'],
-            ['name' => 'Poli Diabetes'],
-            ['name' => 'Poli Rehabilitasi'],
-            ['name' => 'Poli Kesehatan Jiwa'],
-            ['name' => 'Poli Kesehatan Wanita'],
-        ];
+        // $polis = [
+        //     ['name' => 'Poli Umum'],
+        //     ['name' => 'Poli Bedah'],
+        //     ['name' => 'Poli Anak'],
+        //     ['name' => 'Poli Kandungan dan Obstetri'],
+        //     ['name' => 'Poli Gigi'],
+        //     ['name' => 'Poli Mata'],
+        //     ['name' => 'Poli Jantung'],
+        //     ['name' => 'Poli Kulit dan Kelamin'],
+        //     ['name' => 'Poli Psikiatri'],
+        //     ['name' => 'Poli THT (Telinga, Hidung, Tenggorokan)'],
+        //     ['name' => 'Poli Gizi'],
+        //     ['name' => 'Poli Diabetes'],
+        //     ['name' => 'Poli Rehabilitasi'],
+        //     ['name' => 'Poli Kesehatan Jiwa'],
+        //     ['name' => 'Poli Kesehatan Wanita'],
+        // ];
 
-        // Masukkan data ke dalam tabel 'polis'
-        Poli::insert($polis);
+        // // Masukkan data ke dalam tabel 'polis'
+        // Poli::insert($polis);
 
        Jadwal::create([
             'jadwalpraktek' => '08:00-16:00',
