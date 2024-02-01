@@ -196,11 +196,11 @@ class DashboardController extends Controller
             'Kelamin' => 'required',
             'Telepon' => 'required',
             'Agama' => 'required',
-            'Pendidikan' => 'required',
+            // 'Pendidikan' => 'required',
             'Pekerjaan' => 'required',
             'layanan' => 'required',
             'RekamMedis' => 'required',
-            'dokter' => 'required'
+            // 'dokter' => 'required'
         ]);
 
         $Pasien= Pasien::create([
@@ -211,7 +211,7 @@ class DashboardController extends Controller
             'kelamin'=>$request->Kelamin,
             'telepon'=>$request->Telepon,
             'agama'=>$request->Agama,
-            'pendidikan'=>$request->Pendidikan,
+            // 'pendidikan'=>$request->Pendidikan,
             'pekerjaan'=>$request->Pekerjaan
         ]);
 
@@ -236,7 +236,7 @@ class DashboardController extends Controller
             'id_pasien' => $latestpasien->id,
             'layanan' => $request->layanan,
             'keluhan' => $request->RekamMedis,
-            'id_dokter' => $request->dokter
+            // 'id_dokter' => $request->dokter
         ]);
 
         if (isset($request->daftarPasien)){

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->date('tanggalperiksa')->nullable();
             $table->string('layanan');
             $table->string('keluhan');
-            $table->integer('id_dokter')->references('id')->on('dokter');
+            // $table->integer('id_dokter')->references('id')->on('dokter');
             $table->string('diagnosa')->nullable();
             $table->integer('id_obat')->references('id')->on('obat')->nullable();
             $table->string('jumlahobat')->nullable();

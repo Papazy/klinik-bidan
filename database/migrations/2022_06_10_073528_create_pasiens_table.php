@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('kelamin');
             $table->string('telepon');
             $table->string('agama');
-            $table->string('pendidikan')->nullable();
+            // $table->string('pendidikan')->nullable();
             $table->string('pekerjaan')->nullable();
             
             $table->timestamps();

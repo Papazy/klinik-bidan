@@ -100,14 +100,14 @@
 
 
 
-        </--------------------------------------------------------Pendidikan-----------------------------------------------------------------------------------* />
+        {{-- </--------------------------------------------------------Pendidikan-----------------------------------------------------------------------------------* />
         <div class="form-group row">
             <label class="col-form-label col-sm-2 pt-0">Pendidikan</label>
             <div class="col-sm-5">
                 <input type="text" class="form-control" name="Pendidikan" placeholder="pendidikan..."
                     value="{{ $pasien->pendidikan }}"readonly>
             </div>
-        </div>
+        </div> --}}
 
         </--------------------------------------------------------Pekerjaan-----------------------------------------------------------------------------------* />
         <div class="form-group row">
@@ -148,9 +148,9 @@
                         <th>Keterangan</th>
                         <th>Rawat</th>
                         <th>Golongan Darah</th>
-                        <th>Tinggi</th>
+                        {{-- <th>Tinggi</th> --}}
                         <th>Berat</th>
-                        <th>Lingkar Pinggang</th>
+                        {{-- <th>Lingkar Pinggang</th> --}}
                         <th>Tools</th>
                     </tr>
                 </thead>
@@ -211,9 +211,9 @@
                             </td>
                             <td>{{ $row->rawat ?? "-" }}</td>
                             <td>{{ $row->darah ?? "-" }}</td>
-                            <td>{{ $row->tinggi ?? "-" }} Cm</td>
+                            {{-- <td>{{ $row->tinggi ?? "-" }} Cm</td> --}}
                             <td>{{ $row->berat ?? "-" }} Kg</td>
-                            <td>{{ $row->pinggang ?? "-" }} Cm</td>
+                            {{-- <td>{{ $row->pinggang ?? "-" }} Cm</td> --}}
 
 
                             </-------------------------------------------------------- edit
@@ -262,7 +262,7 @@
                     @csrf
                     <input type="hidden" value="{{ $pasien->id }}" name="idpasien">
                     <div class="modal-body relative p-4">
-                        <!--------------------------------------------------------pilih layanan----------------------------------------------------------------------------------- -->
+                        {{-- <!--------------------------------------------------------pilih layanan----------------------------------------------------------------------------------- -->
                         <div class="form-group row mt-2">
                             <label class="col-form-label col-sm-2 pt-0">Layanan</label>
                             <div class="col-sm">
@@ -274,20 +274,20 @@
                                     <option value="Asuransi">Asuransi</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> --}}
                         <!--------------------------------------------------------rekam medis----------------------------------------------------------------------------------- -->
                         <div class="form-group row mt-2">
-                            <label class="col-sm-2 col-form-label">Keluhan</label>
+                            <label class="col-sm-2 col-form-label">Catatan Kecil</label>
                             <div class="col-sm">
                                 <textarea type="text" name="keluhan" class="form-control" cols="30" rows="5"
-                                    placeholder="isi keluhan pasien, dan sudah berapa lama?"
+                                    placeholder="Isi catatan pasien"
                                     required oninvalid="this.setCustomValidity('Isi keluhan si pasien')"
                                     oninput="setCustomValidity('')"></textarea>
                             </div>
                         </div>
 
                         <!--------------------------------------------------------pilih dokter----------------------------------------------------------------------------------- -->
-                        <div class="form-group row mt-2">
+                        {{-- <div class="form-group row mt-2">
                             <label class="col-form-label col-sm-2 pt-0">Dokter</label>
                             <div class="col-sm">
                                 <select name="dokter" class="form-control "
@@ -300,9 +300,9 @@
                                     @endforeach
                                 </select>
                             </div>
-                        </div>
+                        </div> --}}
 
-                        <!--------------------------------------------------------DIAGNOSA----------------------------------------------------------------------------------- -->
+                        {{-- <!--------------------------------------------------------DIAGNOSA----------------------------------------------------------------------------------- -->
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Diagnosa</label>
                             <div class="col-sm-5">
@@ -311,7 +311,7 @@
                                     required oninvalid="this.setCustomValidity('Diagnosa tidak boleh kosong')"
                                     oninput="setCustomValidity('')">
                             </div>
-                        </div>
+                        </div> --}}
 
                         <!--------------------------------------------------------Obat----------------------------------------------------------------------------------- -->
                         <div class="form-group row">
@@ -479,7 +479,7 @@
 
 
 
-                        </--------------------------------------------------------Pendidikan-----------------------------------------------------------------------------------* />
+                        {{-- </--------------------------------------------------------Pendidikan-----------------------------------------------------------------------------------* />
                         <div class="form-group row">
                             <label class="col-form-label col-sm-2 pt-0">Pendidikan</label>
                             <div class="col-sm-5">
@@ -490,7 +490,7 @@
                                     <option value="sarjana" {{ $pasien->pendidikan == 'sarjana' ? 'selected' : '' }}>Sarjana</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> --}}
 
                         </--------------------------------------------------------Pekerjaan-----------------------------------------------------------------------------------* />
                         <div class="form-group row">

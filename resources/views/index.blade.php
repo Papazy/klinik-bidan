@@ -498,18 +498,6 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
                                 </select>
                             </div>
                         </div>
-                        <!--------------------------------------------------------Pendidikan----------------------------------------------------------------------------------->
-                        <div class="form-group row mt-2">
-                            <label class="col-form-label col-sm-2 pt-0">Pendidikan</label>
-                            <div class="col-sm">
-                                <select name="Pendidikan" class="form-control ">
-                                    <option value="-">-</option>
-                                    <option value="sltp/sd-smp">SLTP / SD-SMP</option>
-                                    <option value="slta/sma">SLTA / SMA</option>
-                                    <option value="sarjana">Sarjana</option>
-                                </select>
-                            </div>
-                        </div>
 
                         <!--------------------------------------------------------Pekerjaan----------------------------------------------------------------------------------- -->
                         <div class="form-group row mt-2">
@@ -522,17 +510,6 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
                         <br>
                         <br>
                         <hr class="sidebar-divider d-none d-md-block">
-                        <!--------------------------------------------------------pilih layanan----------------------------------------------------------------------------------- -->
-                        <div class="form-group row mt-2">
-                            <label class="col-form-label col-sm-2 pt-0">Layanan</label>
-                            <div class="col-sm">
-                                <select name="layanan" class="form-control " required oninvalid="this.setCustomValidity('pilih layanan dahulu')" oninput="setCustomValidity('')">
-                                    <option value="">pilih layanan...</option>
-                                    <option value="Umum">Umum</option>
-                                    <option value="Asuransi">Asuransi</option>
-                                </select>
-                            </div>
-                        </div>
                         <!--------------------------------------------------------rekam medis----------------------------------------------------------------------------------- -->
                         <div class="form-group row mt-2">
                             <label class="col-sm-2 col-form-label">Keluhan</label>
@@ -545,13 +522,12 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
 
                         <!--------------------------------------------------------pilih dokter----------------------------------------------------------------------------------- -->
                         <div class="form-group row mt-2">
-                            <label class="col-form-label col-sm-2 pt-0">Dokter</label>
+                            <label class="col-form-label col-sm-2 pt-0">Jadwal Praktek</label>
                             <div class="col-sm">
                                 <select name="doktor" class="form-control " required oninvalid="this.setCustomValidity('Silahkan pilih dokter yang tersedia')" oninput="setCustomValidity('')">
-                                    <option value="">pilih dokter...</option>
+                                    <option value="">pilih jadwal...</option>
                                     @foreach ($dokter as $row)
                                     <option {{ $row->jadwal->jadwalpraktek == 'LIBUR' ? 'disabled' : ''}} {{ $row->jadwal->jadwalpraktek == 'CUTI' ? 'disabled' : ''}} value="{{ $row->id }}">
-                                        {{ $row->nama }}({{ $row->poli == '' ? '-' : $row->poli->name }}) |
                                         {{ $row->jadwal == '' ? 'Belum ada Jadwal' : $row->jadwal->jadwalpraktek }}
 
                                     </option>

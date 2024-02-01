@@ -75,14 +75,14 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2"
             aria-expanded="true" aria-controls="collapsePages">
             <i class="fa fa-user-md"></i>
-            <span>Dokter</span>
+            <span>Bidan</span>
         </a>
         <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Dokter</h6>
-                <a class="collapse-item fa fa-user-md" href="/dokter"> Dokter</a>
+                <h6 class="collapse-header">Bidan</h6>
+                {{-- <a class="collapse-item fa fa-user-md" href="/bidan"> Bidan</a> --}}
                 <a class="collapse-item fa fa-clock" href="/jadwal"> Jadwal Praktek</a>
-                <a class="collapse-item fa fa-heartbeat" href="/poli-form"> Poli/Spesialis</a>
+                {{-- <a class="collapse-item fa fa-heartbeat" href="/poli-form"> Poli/Spesialis</a> --}}
             </div>
         </div>
     </li>

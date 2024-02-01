@@ -2,8 +2,8 @@
 @include('partials.navdashboard')
 
     @if ($errors->any())
-        @foreach ($errors->all() as $item)
-            <div class="alert alert-danger" role="alert">
+    @foreach ($errors->all() as $item)
+    <div class="alert alert-danger" role="alert">
                 {{ $item }}
             </div>
         @endforeach
@@ -125,7 +125,7 @@
             <br>
 
             </--------------------------------------------------------Pendidikan-----------------------------------------------------------------------------------* />
-            <div class="form-group row">
+            {{-- <div class="form-group row">
                 <label class="col-form-label col-sm-2 pt-0">Pendidikan</label>
                 <div class="col-sm-5">
                     <select name="Pendidikan" class="form-control @error('Pendidikan') is-invalid @enderror">
@@ -135,7 +135,7 @@
                         <option value="sarjana" {{ old('Pendidikan') != 'sarjana' ?: 'selected' }}>Sarjana</option>
                     </select>
                 </div>
-            </div>
+            </div> --}}
 
             </--------------------------------------------------------Pekerjaan-----------------------------------------------------------------------------------* />
             <div class="form-group row">
@@ -177,7 +177,7 @@
             </div>
 
             <!--------------------------------------------------------pilih dokter----------------------------------------------------------------------------------- -->
-            <div class="form-group row mt-2">
+            {{-- <div class="form-group row mt-2">
                 <label class="col-form-label col-sm-2 pt-0">Dokter</label>
                 <div class="col-sm-7">
                     <select name="dokter" class="form-control"
@@ -191,7 +191,7 @@
                         @endforeach
                     </select>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="form-group row">
                 <div class="col-sm-10">

@@ -116,77 +116,14 @@
             </div>
 
             <!--------------------------------------------------------DIAGNOSA----------------------------------------------------------------------------------- -->
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Diagnosa</label>
-                <div class="col-sm-5">
-                    <input type="text" class="form-control" name="diagnosa" placeholder="Diagnosa.."
-                        required value="{{ old('diagnosa') }}"
-                        oninvalid="this.setCustomValidity('Diagnosa tidak boleh kosong')"
-                        oninput="setCustomValidity('')">
-                </div>
-            </div>
-
-            <!--------------------------------------------------------Obat----------------------------------------------------------------------------------- -->
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Obat</label>
-                <div class="col-sm-5">
-                    <select name="obat" id="" class="form-control">
-                        <option value="">Pilih obat..</option>
-                        @foreach ($obat as $o)
-                            <option value="{{ $o->id }}">{{ $o->nama . ' (Sisa stok: ' . $o->stok . ')' }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-            <!--------------------------------------------------------banyaknya Obat----------------------------------------------------------------------------------- -->
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Jumlah Obat</label>
-                <div class="col-sm-5">
-                    <input type="number" class="form-control" name="jumlahobat" placeholder="Jumlah obat"
-                        value="{{ old('Nama') }}"
-                        oninvalid="this.setCustomValidity('Jumlah Obat tidak boleh kosong')"
-                        oninput="setCustomValidity('')">
-                </div>
-            </div>
-
-            <!--------------------------------------------------------keterangan----------------------------------------------------------------------------------- -->
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Keterangan</label>
-                <div class="col-sm-5">
-                    <input type="text" class="form-control" name="keterangan" placeholder="Keterangan.."
-                        value="{{ old('keterangan') }}"
-                        oninvalid="this.setCustomValidity('Keterangan tidak boleh kosong')"
-                        oninput="setCustomValidity('')">
-                </div>
-            </div>
-
-            </--------------------------------------------------------jalan /
-                inap-----------------------------------------------------------------------------------* />
-            <div class="form-group row">
-                <label class="col-form-label col-sm-2 pt-0">Ruang</label>
-                <div class="col-sm-5">
-                    <select name="Ruang" value="{{ old('Ruang') }}"
-                        class="form-control @error('Ruang') is-invalid @enderror">
-
-                        <option selected value="">pilih...</option>
-                        <option value="R.Jalan" {{ old('Ruang') != 'R.Jalan' ?: 'selected' }}>R. Jalan</option>
-                        <option value="R.Inap" {{ old('Ruang') != 'R.Inap' ?: 'selected' }}>R. Inap</option>
-                    </select>
-                    @error('Ruang')
-                        <div class="invalid-feedback">
-                            "pilih jalan / inap
-                        </div>
-                    @enderror
-                </div>
-            </div>
+           
 
             <h5>==== khusus penyakit tertentu ====</h5>
 
             </--------------------------------------------------------Golongan
                 darah-----------------------------------------------------------------------------------* />
             <div class="form-group row">
-                <label class="col-form-label col-sm-2 pt-0">Golongan Darah</label>
+                <label class="col-form-label col-sm-2 pt-0">Tekanan Darah</label>
                 <div class="col-sm-5">
                     <select name="Darah" value="{{ old('Darah') }}" class="form-control">
                         <option selected value="-">pilih...</option>
@@ -202,14 +139,14 @@
                 </div>
             </div>
 
-            <!--------------------------------------------------------Tinggi Badan----------------------------------------------------------------------------------- -->
+            {{-- <!--------------------------------------------------------Tinggi Badan----------------------------------------------------------------------------------- -->
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Tinggi Badan</label>
                 <div class="col-sm-5">
                     <input type="number" class="form-control" name="Tinggi" placeholder="Tinggi Badan (Cm)"
                         value="{{ old('Tinggi') }}">
                 </div>
-            </div>
+            </div> --}}
 
             <!--------------------------------------------------------Berat Badan----------------------------------------------------------------------------------- -->
             <div class="form-group row">
@@ -220,14 +157,14 @@
                 </div>
             </div>
 
-            <!--------------------------------------------------------lingkar Pinggang----------------------------------------------------------------------------------- -->
+            {{-- <!--------------------------------------------------------lingkar Pinggang----------------------------------------------------------------------------------- -->
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Lingkar Badan</label>
                 <div class="col-sm-5">
                     <input type="number" class="form-control" name="LingkarBadan" placeholder="Lingkar Badan (Cm)"
                         value="{{ old('LingkarBadan') }}">
                 </div>
-            </div>
+            </div> --}}
 
 
             </--------------------------------------------------------Alamat-----------------------------------------------------------------------------------* />
@@ -249,14 +186,14 @@
                 </div>
             </div>
 
-            </--------------------------------------------------------Pendidikan-----------------------------------------------------------------------------------* />
+            {{-- </--------------------------------------------------------Pendidikan-----------------------------------------------------------------------------------* />
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Pendidikan</label>
                 <div class="col-sm-5">
                     <input type="text" class="form-control" name="Pendidikan"
                         value="{{ $diagnosa->pasien->pendidikan }}" readonly>
                 </div>
-            </div>
+            </div> --}}
 
             </--------------------------------------------------------Pekerjaan-----------------------------------------------------------------------------------* />
             <div class="form-group row">
