@@ -579,6 +579,7 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
                         <p class="h3">Atas Nama : <span class="text-primary">{{ Session::has('nama') ? Session::get('nama') : '' }}</span></p>
                         <p>Daftar pada jam : <span class="text-primary">{{ Session::has('timestamps') ? Session::get('timestamps') : '' }}</span>
                         </p>
+                        <img src={{"https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=".Session::get('nomorAntrian') }}  />
                     </div>
                     <div class="modal-footer">
                         <p>Tanggal : <span class="text-primary">{{ Session::has('tanggaldaftar') ? Session::get('tanggaldaftar') : '' }}</span>
