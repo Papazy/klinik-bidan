@@ -17,14 +17,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // User::create([
-        //     'name' => 'admin',
-        //     'role' => 'admin',
-        //     'email' => 'admin@gmail.com',
-        //     'is_admin' => 1,
-        //     'is_superadmin' => 1,
-        //     'password' => Hash::make('admin'),
-        // ]);
+        User::create([
+            'name' => 'admin',
+            'role' => 'admin',
+            'email' => 'admin@gmail.com',
+            'is_admin' => 1,
+            'is_superadmin' => 1,
+            'password' => Hash::make('admin'),
+        ]);
         $polis = [
             ['name' => 'Poli Umum'],
             ['name' => 'Poli Bedah'],

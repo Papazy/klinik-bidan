@@ -126,7 +126,7 @@
 
     <li class="nav-item">
         <div class="sidebar-card d-none d-lg-flex">
-            <img class="sidebar-card-illustration mb-2" src="img/logo.png" alt="...">
+            <img class="sidebar-card-illustration mb-2" src="img/icon.ico" alt="...">
             <p class="text-center mb-2"><strong></strong>Klinik {{ env("APP_NAME") }}</p>
             <a class="btn btn-success btn-sm" href="/">Ke Beranda</a>
         </div>
@@ -143,7 +143,7 @@
     </li>
 
     <div class="sidebar-heading">
-        Copyright &copy; KLINIK {{ env("APP_NAME") }} <br>2022
+        Copyright &copy; KLINIK {{ env("APP_NAME") }} <br>2024
     </div>
 
 </ul>
