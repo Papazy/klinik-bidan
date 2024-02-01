@@ -61,7 +61,7 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel">
                             <img src="{{ asset('img/logo.png') }}" style=”float:left;
-                                width="55";height="55"” />Klinik Maju Sejahtera
+                                width="55";height="55"” /> Klinik Bidan Desita
                         </h5>
 
                     </div>
@@ -104,18 +104,18 @@
                             </div>
 
                             <!--------------------------------------------------------pilih dokter----------------------------------------------------------------------------------- -->
-                            <div class="form-group row mt-2">
-                                <label class="col-form-label col-sm-2 pt-0">Dokter</label>
+                            <!-- <div class="form-group row mt-2">
+                                <label class="col-form-label col-sm-2 pt-0">Bidan</label>
                                 <div class="col-sm">
                                     <select name="doktor" class="form-control " required oninvalid="this.setCustomValidity('pilihkan dokter yang memeriksa...')"
                                     oninput="setCustomValidity('')">
-                                        <option value="">pilih dokter...</option>
+                                        <option value="">pilih bidan...</option>
                                         @foreach($dokter as $row)
                                         <option value= "{{ $row->id }}">{{ $row->nama }}({{ $row->poli == '' ? '-' : $row->poli->name }})  | {{ $row->jadwal == '' ? 'Belum ada Jadwal' : $row->jadwal->jadwalpraktek }}</option>
                                         @endforeach
                                     </select>
                                 </div>
-                            </div>
+                            </div> -->
                     </div>
                     
                     <div class="modal-footer">
