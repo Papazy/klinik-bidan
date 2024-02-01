@@ -58,8 +58,8 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">Tentang
-                            kami</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">Pendaftaran</a>
+                        kami</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">Pendaftaran</a>
                     </li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Alamat</a></li>
                 </ul>
@@ -68,6 +68,9 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
     </nav>
 
     <!--------------------------------------------------------Bagian Isi Konten Teratas----------------------------------------------------------------------------------->
+    {{-- @if($errors)
+    {{ dd($errors) }}
+    @endif --}}
     <header class="masthead bg-primary text-white text-center">
         <div class="container d-flex align-items-center flex-column">
             <!-- Masthead Avatar Image-->
@@ -380,10 +383,13 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
                 <form action="{{ route('pasien.store') }}" method="post">
                     @csrf
                     <input type="hidden" value="1" name="daftarPasien">
-                    <div class="modal-body relative p-4">
+                    <div class="modal-body relative p-4"> 
+                        <div class="mb-2">
+                        
                         <a href="pasien-lama" type="button" class="btn btn-warning">Pasien Lama?</a>
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#daftarPasienbaru">Pasien Baru?</button>
+                        </div>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
                     </div>
                     <div class="modal-footer">
 
@@ -524,11 +530,11 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
                         <div class="form-group row mt-2">
                             <label class="col-form-label col-sm-2 pt-0">Jadwal Praktek</label>
                             <div class="col-sm">
-                                <select name="doktor" class="form-control " required oninvalid="this.setCustomValidity('Silahkan pilih dokter yang tersedia')" oninput="setCustomValidity('')">
+                                <select name="jadwal" class="form-control " required oninvalid="this.setCustomValidity('Silahkan pilih dokter yang tersedia')" oninput="setCustomValidity('')">
                                     <option value="">pilih jadwal...</option>
-                                    @foreach ($dokter as $row)
-                                    <option {{ $row->jadwal->jadwalpraktek == 'LIBUR' ? 'disabled' : ''}} {{ $row->jadwal->jadwalpraktek == 'CUTI' ? 'disabled' : ''}} value="{{ $row->id }}">
-                                        {{ $row->jadwal == '' ? 'Belum ada Jadwal' : $row->jadwal->jadwalpraktek }}
+                                    @foreach ($jadwal as $row)
+                                    <option {{ $row->jadwalpraktek == 'LIBUR' ? 'disabled' : ''}} {{ $row->jadwalpraktek == 'CUTI' ? 'disabled' : ''}} value="{{ $row->id }}">
+                                        {{ $row->jadwalpraktek == '' ? 'Belum ada Jadwal' : $row->jadwalpraktek }}
 
                                     </option>
                                     @endforeach
@@ -603,7 +609,6 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
                     <div class="modal-body">
                         @foreach ($errors->all() as $item)
                         <div class="alert alert-danger" role="alert">
-                            {{ $item }}
                         </div>
                         @endforeach
                     </div>

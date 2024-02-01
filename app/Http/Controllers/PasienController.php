@@ -53,11 +53,11 @@ class PasienController extends Controller
             'Kelamin' => 'required',
             'Telepon' => 'required',
             'Agama' => 'required',
-            'Pendidikan' => 'required',
+            // 'Pendidikan' => 'required',
             'Pekerjaan' => 'required',
-            'layanan' => 'required',
+            // 'layanan' => 'required',
             'RekamMedis' => 'required',
-            'doktor' => 'required',
+            // 'doktor' => 'required',
             'g-recaptcha-response' => 'required|captcha'
         ],
         [
@@ -81,9 +81,9 @@ class PasienController extends Controller
                 $Rekam = Rekam::create([
                     'nomorantrian' => "00" . $nomorAntrian,
                     'id_pasien' => $row->id,
-                    'layanan' => $request->layanan,
+                    // // 'layanan' => $request->layanan,
                     'keluhan' => $request->RekamMedis,
-                    'id_dokter' => $request->doktor
+                    // 'id_dokter' => $request->doktor
                 ]);
                 return back()->with([
                     'success' => 'Data berhasil ditambahkan',
@@ -102,7 +102,7 @@ class PasienController extends Controller
                 'kelamin' => $request->Kelamin,
                 'telepon' => $request->Telepon,
                 'agama' => $request->Agama,
-                'pendidikan' => $request->Pendidikan,
+                // // 'pendidikan' => $request->Pendidikan,
                 'pekerjaan' => $request->Pekerjaan
             ]);
 
@@ -119,9 +119,9 @@ class PasienController extends Controller
             Rekam::create([
                 'nomorantrian' => "00" . $nomorAntrian,
                 'id_pasien' => $latestpasien->id,
-                'layanan' => $request->layanan,
+                // // 'layanan' => $request->layanan,
                 'keluhan' => $request->RekamMedis,
-                'id_dokter' => $request->doktor
+                // 'id_dokter' => $request->doktor
             ]);
             return back()->with([
                 'success' => 'Data berhasil ditambahkan',
@@ -192,7 +192,7 @@ class PasienController extends Controller
             'Kelamin' => 'required',
             'Telepon' => 'required',
             'Agama' => 'required',
-            'Pendidikan' => 'required',
+            // 'Pendidikan' => 'required',
             'Pekerjaan' => 'required'
         ]);
 
@@ -207,7 +207,7 @@ class PasienController extends Controller
             'kelamin' => $request->Kelamin,
             'telepon' => $request->Telepon,
             'agama' => $request->Agama,
-            'pendidikan' => $request->Pendidikan,
+            // // 'pendidikan' => $request->Pendidikan,
             'pekerjaan' => $request->Pekerjaan
         ]);
 
@@ -279,7 +279,7 @@ class PasienController extends Controller
     {
         $validated = $request->validate([
             'idpasien' => 'required',
-            'layanan' => 'required',
+            // 'layanan' => 'required',
             'keluhan' => 'required',
             'dokter' => 'required',
             'diagnosa' => 'required',
@@ -292,7 +292,7 @@ class PasienController extends Controller
             'jumlahobat' => $validated['jumlahobat'],
             'id_pasien' => $validated['idpasien'],
             'nomorantrian' => 0,
-            'layanan' => $validated['layanan'],
+            // // 'layanan' => $validated['layanan'],
             'keluhan' => $validated['keluhan'],
             'id_dokter' => $validated['dokter'],
             'diagnosa' => $validated['diagnosa'],
@@ -319,7 +319,7 @@ class PasienController extends Controller
             'Kelamin' => 'required',
             'Telepon' => 'required',
             'Agama' => 'required',
-            'Pendidikan' => 'required',
+            // 'Pendidikan' => 'required',
             'Pekerjaan' => 'required'
         ]);
 
@@ -332,7 +332,7 @@ class PasienController extends Controller
         $pasien->kelamin = $validated['Kelamin'];
         $pasien->telepon = $validated['Telepon'];
         $pasien->agama = $validated['Agama'];
-        $pasien->pendidikan = $validated['Pendidikan'];
+        // // $pasien->pendidikan = $validated['Pendidikan'];
         $pasien->pekerjaan = $validated['Pekerjaan'];
         $pasien->save();
 

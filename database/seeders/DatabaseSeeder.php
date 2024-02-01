@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\Jadwal;
 use App\Models\Poli;
 use Illuminate\Support\Facades\Hash;
 
@@ -45,5 +46,18 @@ class DatabaseSeeder extends Seeder
 
         // Masukkan data ke dalam tabel 'polis'
         Poli::insert($polis);
+
+       Jadwal::create([
+            'jadwalpraktek' => '08:00-16:00',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        // Jadwal 18:00-02:00
+       Jadwal::create([
+            'jadwalpraktek' => '18:00-02:00',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 }

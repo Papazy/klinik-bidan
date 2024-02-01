@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Dokter;
 use App\Models\Pasien;
+use App\Models\Jadwal;
 use App\Models\Pegawai;
 use App\Models\Rekam;
 use DateTimeInterface;
@@ -32,8 +33,10 @@ class HomeController extends Controller
     public function index()
     {
         $dokter = Dokter::all();
+        $jadwal = Jadwal::all();
         return view('index', [
-            'dokter' => $dokter 
+            'dokter' => $dokter, 
+            'jadwal' => $jadwal
         ]);
     }
 }

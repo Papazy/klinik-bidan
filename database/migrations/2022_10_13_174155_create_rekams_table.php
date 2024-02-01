@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('id_pasien')->references('id')->on('pasiens');
             $table->string('nomorantrian');
             $table->date('tanggalperiksa')->nullable();
-            $table->string('layanan');
+            // $table->string('layanan');
             $table->string('keluhan');
             // $table->integer('id_dokter')->references('id')->on('dokter');
             $table->string('diagnosa')->nullable();
@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('rawat')->nullable();
             $table->string('lamabaru')->nullable();
             $table->string('darah')->nullable();
-            $table->string('tinggi')->nullable();
+            // $table->string('tinggi')->nullable();
             $table->string('berat')->nullable();
             $table->string('pinggang')->nullable();
         });
