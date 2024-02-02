@@ -134,7 +134,7 @@ class DashboardController extends Controller
     public function addrekam(Request $request){
         $validate = $request->validate([
             'id_player' => 'required',
-            'layanan' => 'required',
+            // 'layanan' => 'required',
             'keluhan' => 'required',
             'dokter' => 'required'
         ]);
@@ -148,7 +148,7 @@ class DashboardController extends Controller
         $Rekam = Rekam::create([
             'nomorantrian' => "00" . $nomorAntrian,
             'id_pasien' => $validate['id_player'],
-            'layanan' => $validate['layanan'],
+            // // 'layanan' => $validate['layanan'],
             'keluhan' => $validate['keluhan'],
             'id_dokter' => $validate['dokter']
         ]);
@@ -198,7 +198,7 @@ class DashboardController extends Controller
             'Agama' => 'required',
             // 'Pendidikan' => 'required',
             'Pekerjaan' => 'required',
-            'layanan' => 'required',
+            // 'layanan' => 'required',
             'RekamMedis' => 'required',
             // 'dokter' => 'required'
         ]);
@@ -234,7 +234,7 @@ class DashboardController extends Controller
         Rekam::create([
             'nomorantrian' => "00".$nomorAntrian,
             'id_pasien' => $latestpasien->id,
-            'layanan' => $request->layanan,
+            // // 'layanan' => $request->layanan,
             'keluhan' => $request->RekamMedis,
             // 'id_dokter' => $request->dokter
         ]);
@@ -273,7 +273,7 @@ class DashboardController extends Controller
     {
         $validated = $request->validate([
             'idrekam' => 'required',
-            'layanan' => 'required',
+            // 'layanan' => 'required',
             'keluhan' => 'required', 
             'dokter' => 'required', 
             'diagnosa' => 'required',
@@ -298,7 +298,7 @@ class DashboardController extends Controller
             $obat->save();
         }
 
-        $rekam->layanan = $validated['layanan'];
+        // // $rekam->layanan = $validated['layanan'];
         $rekam->keluhan = $validated['keluhan'];
         $rekam->id_dokter = $validated['dokter'];
         $rekam->diagnosa = $validated['diagnosa'];
