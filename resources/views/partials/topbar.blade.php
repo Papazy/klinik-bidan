@@ -38,7 +38,7 @@
           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               @if(auth()->check() && auth()->user()->is_superadmin === 1)
-              <span class="mr-2 d-none d-lg-inline text-primary-600 small">  <font color="blue">SuperAdmin</font></span>
+              <span class="mr-2 d-none d-lg-inline text-primary-600 small">  <font color="blue">Admin</font></span>
               @endif
               <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->name }}</span>
              
