@@ -37,16 +37,16 @@
                         <tr>
                             <td> {{ $loop->iteration }} </td>
                             <td> {{ $jp->jadwalpraktek }} </td>
-                            <td class="text-sm">
+                            <td class="text-sm d-flex flex-col gap-5 align-items-start">
                                 </-------------------------------------------------------- edit
                                     -----------------------------------------------------------------------------------* />
-                                <a href="{{ route('jadwal.edit', $jp->id) }}" class="btn btn-warning">
+                                <a href="{{ route('jadwal.edit', $jp->id) }}" class=" col col-2 btn btn-warning">
                                     <i class="fas fa-pen text-white"></i>
                                 </a>
 
                                 </-------------------------------------------------------- hapus
                                     -----------------------------------------------------------------------------------* />
-                                <form action="{{ route('jadwal.destroy', $jp->id) }}" method="POST">
+                                <form action="{{ route('jadwal.destroy', $jp->id) }}" method="POST" class="col col-2">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="btn btn-danger"
