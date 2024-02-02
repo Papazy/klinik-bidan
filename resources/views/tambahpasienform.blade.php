@@ -167,10 +167,10 @@
             </div> --}}
             <!--------------------------------------------------------rekam medis----------------------------------------------------------------------------------- -->
             <div class="form-group row mt-2">
-                <label class="col-sm-2 col-form-label">Keluhan</label>
+                <label class="col-sm-2 col-form-label">Catatan</label>
                 <div class="col-sm-5">
                         <textarea type="text" name="RekamMedis" class="form-control" cols="30" rows="5" 
-                        placeholder="Masukkan keluhan si pasien, dan sudah berapa lama?"
+                        placeholder="Catatan pasien"
                         required oninvalid="this.setCustomValidity('isi...')"
                                     oninput="setCustomValidity('')"></textarea>
                 </div>
