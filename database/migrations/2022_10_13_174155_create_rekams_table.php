@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('rekams', function (Blueprint $table) {
             $table->id();
-            $table->integer('laporan');
+            $table->integer('laporan')->default('1');
             $table->timestamps();
             $table->integer('id_pasien')->references('id')->on('pasiens');
             $table->string('nomorantrian');
