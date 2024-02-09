@@ -82,7 +82,7 @@
                                 <input type="text" value="{{ Session::get('id') }}" name="id_player" readonly
                                     hidden>
                             </div>
-                            <div class="form-group row mt-2">
+                            {{-- <div class="form-group row mt-2">
                                 <label class="col-form-label col-sm-2 pt-0">Layanan</label>
                                 <div class="col-sm">
                                     <select name="layanan" class="form-control " required oninvalid="this.setCustomValidity('pilihkan layanan yang digunakan pasien...')"
@@ -92,7 +92,7 @@
                                         <option value="Asuransi">Asuransi</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div> --}}
                             <!--------------------------------------------------------rekam medis----------------------------------------------------------------------------------- -->
                             <div class="form-group row mt-2">
                                 <label class="col-sm-2 col-form-label">Keluhan</label>
