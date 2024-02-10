@@ -543,10 +543,10 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
                         </div>
 
                         <!--------------------------------------------------------pilih dokter----------------------------------------------------------------------------------- -->
-                        <div class="mt-2 d-flex justify-content-center" required>
+                        {{-- <div class="mt-2 d-flex justify-content-center" required>
                             {!! NoCaptcha::renderJs() !!}
                             {!! NoCaptcha::display() !!}
-                        </div>
+                        </div> --}}
 
                     </div>
                     <div class="modal-footer">

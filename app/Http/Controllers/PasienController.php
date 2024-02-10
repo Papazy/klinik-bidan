@@ -58,14 +58,14 @@ class PasienController extends Controller
             // 'layanan' => 'required',
             'RekamMedis' => 'required',
             // 'doktor' => 'required',
-            'g-recaptcha-response' => 'required|captcha'
-        ],
-        [
-            'g-recaptcha-response' => [
-                'required' => 'Please verify that you are not a robot.',
-                'captcha' => 'Captcha error! try again later or contact site admin.',
-            ],
-        ],
+            // 'g-recaptcha-response' => 'required|captcha'
+        ]
+        // [
+        //     'g-recaptcha-response' => [
+        //         'required' => 'Please verify that you are not a robot.',
+        //         'captcha' => 'Captcha error! try again later or contact site admin.',
+        //     ],
+        // ],
         );
 
         $data = Pasien::where('nama', $request->Nama)->where('lahir', $request->Lahir)->get();
