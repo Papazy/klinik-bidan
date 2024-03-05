@@ -16,6 +16,7 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Twilio\Rest\Client;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 
 
@@ -85,7 +86,10 @@ class PasienController extends Controller
                     
                     $data = Pasien::where('nama', $request->Nama)->where('lahir', $request->Lahir)->get();
                     $client_number = $request->Telepon;
-                    
+                    if (Str::startsWith($client_number, '08')) {
+                        // Jika ya, ubah "08" menjadi "+62"
+                        $client_number = Str::replaceFirst('08', '+62', $client_number);
+                    }
                     $nomorAntrian = 1;
                     $cekData = Rekam::whereDate('created_at', Carbon::today())->latest()->first();
                     
