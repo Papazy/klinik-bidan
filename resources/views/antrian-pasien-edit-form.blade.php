@@ -28,7 +28,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Atas Nama</label>
                 <div class="col-sm-5">
-                    <input class="form-control" value="{{ $rekam->pasien->nama }}" readonly>
+                    <input  class="form-control" value="{{ $rekam->pasien->nama }}" readonly>
                     
                 </div>
             </div>

@@ -58,8 +58,8 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">Tentang
-                        kami</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">Pendaftaran</a>
+                            kami</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">Pendaftaran</a>
                     </li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Alamat</a></li>
                 </ul>
@@ -383,11 +383,11 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
                 <form action="{{ route('pasien.store') }}" method="post">
                     @csrf
                     <input type="hidden" value="1" name="daftarPasien">
-                    <div class="modal-body relative p-4"> 
+                    <div class="modal-body relative p-4">
                         <div class="mb-2">
-                        
-                        <a href="pasien-lama" type="button" class="btn btn-warning">Pasien Lama?</a>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#daftarPasienbaru">Pasien Baru?</button>
+
+                            <a href="pasien-lama" type="button" class="btn btn-warning">Pasien Lama?</a>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#daftarPasienbaru">Pasien Baru?</button>
                         </div>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
                     </div>
@@ -579,7 +579,7 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
                         <p class="h3">Atas Nama : <span class="text-primary">{{ Session::has('nama') ? Session::get('nama') : '' }}</span></p>
                         <p>Daftar pada jam : <span class="text-primary">{{ Session::has('timestamps') ? Session::get('timestamps') : '' }}</span>
                         </p>
-                        <img src={{"https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=".Session::get('nomorAntrian') }}  />
+                        {!! Session::has('qrcode') ? Session::get('qrcode') : '' !!}
                     </div>
                     <div class="modal-footer">
                         <p>Tanggal : <span class="text-primary">{{ Session::has('tanggaldaftar') ? Session::get('tanggaldaftar') : '' }}</span>
@@ -636,6 +636,7 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
         $(document).ready(function() {
             $('#error').modal('show')
         });
+
     </script>
     @endif
 
@@ -645,6 +646,7 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
             $('#antrian').modal('show')
         });
         @endif
+
     </script>
     <!--------------------------------------------------------fungsi inputan angka/number only----------------------------------------------------------------------------------->
     <script>
@@ -682,20 +684,21 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
         setInputFilter(document.getElementById("notelp"), function(value) {
             return /^-?\d*$/.test(value);
         }, "Isi dengan Angka");
+
     </script>
 
     <!--------------------------------------------------------fungsi jam----------------------------------------------------------------------------------->
     <script type="text/javascript">
         function updateClock() {
             var now = new Date();
-            var dname = now.getDay(),
-                mo = now.getMonth(),
-                dnum = now.getDate(),
-                yr = now.getFullYear(),
-                hou = now.getHours(),
-                min = now.getMinutes(),
-                sec = now.getSeconds(),
-                pe = "AM";
+            var dname = now.getDay()
+                , mo = now.getMonth()
+                , dnum = now.getDate()
+                , yr = now.getFullYear()
+                , hou = now.getHours()
+                , min = now.getMinutes()
+                , sec = now.getSeconds()
+                , pe = "AM";
 
             if (hou >= 12) {
                 pe = "PM";
@@ -724,6 +727,7 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
             updateClock();
             window.setInterval("updateClock()", 1);
         }
+
     </script>
 
     <!--------------------------------------------------------fungsi download kartu antrian----------------------------------------------------------------------------------->
@@ -752,6 +756,7 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
                 window.open(uri);
             }
         }
+
     </script>
 </body>
 

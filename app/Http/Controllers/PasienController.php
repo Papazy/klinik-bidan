@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use PDO;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+
 
 class PasienController extends Controller
 {
@@ -69,13 +71,17 @@ class PasienController extends Controller
         );
 
         $data = Pasien::where('nama', $request->Nama)->where('lahir', $request->Lahir)->get();
-
+        
         $nomorAntrian = 1;
         $cekData = Rekam::whereDate('created_at', Carbon::today())->latest()->first();
+        
         if ($cekData) {
             $nomorAntrian = $cekData->nomorantrian + 1;
         }
-
+        $qrsize = 250;
+        $sekarang = Carbon::now();
+        $tanggal_hari_ini = Carbon::today()->format('dmy');
+        
         if (count($data) > 0) {
             foreach ($data as $row) :
                 $Rekam = Rekam::create([
@@ -85,12 +91,18 @@ class PasienController extends Controller
                     'keluhan' => $request->RekamMedis,
                     // 'id_dokter' => $request->doktor
                 ]);
+              
+                $jam_daftar = $Rekam->created_at->format('H:i:s');
+                $tanggal_daftar = $Rekam->created_at->format('d-m-Y');
+                $qrcode = QrCode::size($qrsize)->generate("Nomor Antrian : $nomorAntrian\n"."Nama : $request->Nama\n". "Tanggal Daftar : $tanggal_daftar\n" . "Jam Daftar : $jam_daftar \n". "Unique Code : $nomorAntrian$tanggal_hari_ini\n");
+                
                 return back()->with([
                     'success' => 'Data berhasil ditambahkan',
                     'nomorAntrian' => "00" . $nomorAntrian,
                     'nama' => $request->Nama,
                     'timestamps' => $Rekam->created_at->format('H:i:s'),
-                    'tanggaldaftar' => $Rekam->created_at->format('d-m-Y')
+                    'tanggaldaftar' => $Rekam->created_at->format('d-m-Y'),
+                    'qrcode' => $qrcode
                 ]);
             endforeach;
         } else {
@@ -105,7 +117,7 @@ class PasienController extends Controller
                 // // 'pendidikan' => $request->Pendidikan,
                 'pekerjaan' => $request->Pekerjaan
             ]);
-
+            
             // $kode= 100000+ (integer)$Pasien -> id ;
             // $nomer= substr($kode, 1, 5). $Pasien -> lahir -> format ('dmy');
             // $Pasien -> kodepasien = $nomer ;
@@ -113,9 +125,13 @@ class PasienController extends Controller
             $nomer = $Pasien->lahir->format('dmy');
             $Pasien->kodepasien = $nomer;
             $Pasien->save();
-
+            
             $latestpasien = Pasien::all()->last();
-
+            
+            
+            $jam_daftar = $Pasien->created_at->format('H:i:s');
+            $tanggal_daftar = $Pasien->created_at->format('d-m-Y');
+            $qrcode = QrCode::size($qrsize)->generate("Nomor Antrian : $nomorAntrian\n"."Nama : $request->Nama\n" . "Tanggal Daftar : $tanggal_daftar\n" . "Jam Daftar : $jam_daftar\n". "Unique Code : $nomorAntrian$tanggal_hari_ini\n");
             Rekam::create([
                 'nomorantrian' => "00" . $nomorAntrian,
                 'id_pasien' => $latestpasien->id,
@@ -123,12 +139,15 @@ class PasienController extends Controller
                 'keluhan' => $request->RekamMedis,
                 // 'id_dokter' => $request->doktor
             ]);
+
+
             return back()->with([
                 'success' => 'Data berhasil ditambahkan',
                 'nomorAntrian' => "00" . $nomorAntrian,
                 'nama' => $request->Nama,
                 'timestamps' => $Pasien->created_at->format('H:i:s'),
-                'tanggaldaftar' => $Pasien->created_at->format('d-m-Y')
+                'tanggaldaftar' => $Pasien->created_at->format('d-m-Y'),
+                'qrcode' => $qrcode
             ]);
         }
 
