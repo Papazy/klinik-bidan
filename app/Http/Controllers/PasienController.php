@@ -58,7 +58,6 @@ class PasienController extends Controller
         $token  = "64d28bb60c6949fcceada85553157360";
         $twilio_whatsapp_number = "+14155238886";
         $twilio_client = new Client($sid, $token);
-
         $this->validate(
             $request,
             [
@@ -75,29 +74,30 @@ class PasienController extends Controller
                 'RekamMedis' => 'required',
                 // 'doktor' => 'required',
                 // 'g-recaptcha-response' => 'required|captcha'
-            ]
-            // [
-            //     'g-recaptcha-response' => [
-            //         'required' => 'Please verify that you are not a robot.',
-            //         'captcha' => 'Captcha error! try again later or contact site admin.',
-            //     ],
-            // ],
-        );
-
-        $data = Pasien::where('nama', $request->Nama)->where('lahir', $request->Lahir)->get();
-
-        $nomorAntrian = 1;
-        $cekData = Rekam::whereDate('created_at', Carbon::today())->latest()->first();
-
-        if ($cekData) {
-            $nomorAntrian = $cekData->nomorantrian + 1;
-        }
-        $qrsize = 250;
-        $sekarang = Carbon::now();
-        $tanggal_hari_ini = Carbon::today()->format('dmy');
-
-        if (count($data) > 0) {
-            foreach ($data as $row) :
+                ]
+                // [
+                    //     'g-recaptcha-response' => [
+                        //         'required' => 'Please verify that you are not a robot.',
+                        //         'captcha' => 'Captcha error! try again later or contact site admin.',
+                        //     ],
+                        // ],
+                    );
+                    
+                    $data = Pasien::where('nama', $request->Nama)->where('lahir', $request->Lahir)->get();
+                    $client_number = $request->Telepon;
+                    
+                    $nomorAntrian = 1;
+                    $cekData = Rekam::whereDate('created_at', Carbon::today())->latest()->first();
+                    
+                    if ($cekData) {
+                        $nomorAntrian = $cekData->nomorantrian + 1;
+                    }
+                    $qrsize = 250;
+                    $sekarang = Carbon::now();
+                    $tanggal_hari_ini = Carbon::today()->format('dmy');
+                    
+                    if (count($data) > 0) {
+                        foreach ($data as $row) :
                 $Rekam = Rekam::create([
                     'nomorantrian' => "00" . $nomorAntrian,
                     'id_pasien' => $row->id,
@@ -163,7 +163,7 @@ class PasienController extends Controller
             
             $message = $twilio_client->messages
                 ->create(
-                    "whatsapp:+6282267450565",
+                    "whatsapp:".$client_number,
                     [
                         "from" => "whatsapp:" . $twilio_whatsapp_number,
                         "body" => "Terima kasih telah mendaftar di Klinik Desita.\nNomor antrian anda adalah *$nomorAntrian*\n Nama : $request->Nama\n Tanggal Daftar : $tanggal_daftar\n Jam Daftar : $jam_daftar\n". "Link *QR Code* : https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=$unique_code\n"

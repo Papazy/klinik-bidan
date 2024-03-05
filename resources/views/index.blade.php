@@ -535,7 +535,6 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
                                     @foreach ($jadwal as $row)
                                     <option {{ $row->jadwalpraktek == 'LIBUR' ? 'disabled' : ''}} {{ $row->jadwalpraktek == 'CUTI' ? 'disabled' : ''}} value="{{ $row->id }}">
                                         {{ $row->jadwalpraktek == '' ? 'Belum ada Jadwal' : $row->jadwalpraktek }}
-
                                     </option>
                                     @endforeach
                                 </select>
