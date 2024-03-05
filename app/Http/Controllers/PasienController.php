@@ -12,10 +12,16 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use PDO;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+// require_once 'vendor/autoload.php';
+use Twilio\Rest\Client;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+
 
 
 class PasienController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +31,7 @@ class PasienController extends Controller
     {
         $datapasien = Pasien::get();
 
-        
+
         return view('pasien', compact('datapasien'));
     }
 
@@ -47,41 +53,49 @@ class PasienController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'Nama' => 'required',
-            'Alamat' => 'required',
-            'Lahir' => 'required',
-            'NIK' => 'required',
-            'Kelamin' => 'required',
-            'Telepon' => 'required',
-            'Agama' => 'required',
-            // 'Pendidikan' => 'required',
-            'Pekerjaan' => 'required',
-            // 'layanan' => 'required',
-            'RekamMedis' => 'required',
-            // 'doktor' => 'required',
-            // 'g-recaptcha-response' => 'required|captcha'
-        ]
-        // [
-        //     'g-recaptcha-response' => [
-        //         'required' => 'Please verify that you are not a robot.',
-        //         'captcha' => 'Captcha error! try again later or contact site admin.',
-        //     ],
-        // ],
+
+        $sid    = "AC01dae14034bd9fcbf4d4bc2a2ea30887";
+        $token  = "64d28bb60c6949fcceada85553157360";
+        $twilio_whatsapp_number = "+14155238886";
+        $twilio_client = new Client($sid, $token);
+
+        $this->validate(
+            $request,
+            [
+                'Nama' => 'required',
+                'Alamat' => 'required',
+                'Lahir' => 'required',
+                'NIK' => 'required',
+                'Kelamin' => 'required',
+                'Telepon' => 'required',
+                'Agama' => 'required',
+                // 'Pendidikan' => 'required',
+                'Pekerjaan' => 'required',
+                // 'layanan' => 'required',
+                'RekamMedis' => 'required',
+                // 'doktor' => 'required',
+                // 'g-recaptcha-response' => 'required|captcha'
+            ]
+            // [
+            //     'g-recaptcha-response' => [
+            //         'required' => 'Please verify that you are not a robot.',
+            //         'captcha' => 'Captcha error! try again later or contact site admin.',
+            //     ],
+            // ],
         );
 
         $data = Pasien::where('nama', $request->Nama)->where('lahir', $request->Lahir)->get();
-        
+
         $nomorAntrian = 1;
         $cekData = Rekam::whereDate('created_at', Carbon::today())->latest()->first();
-        
+
         if ($cekData) {
             $nomorAntrian = $cekData->nomorantrian + 1;
         }
         $qrsize = 250;
         $sekarang = Carbon::now();
         $tanggal_hari_ini = Carbon::today()->format('dmy');
-        
+
         if (count($data) > 0) {
             foreach ($data as $row) :
                 $Rekam = Rekam::create([
@@ -91,11 +105,11 @@ class PasienController extends Controller
                     'keluhan' => $request->RekamMedis,
                     // 'id_dokter' => $request->doktor
                 ]);
-              
+
                 $jam_daftar = $Rekam->created_at->format('H:i:s');
                 $tanggal_daftar = $Rekam->created_at->format('d-m-Y');
-                $qrcode = QrCode::size($qrsize)->generate("Nomor Antrian : $nomorAntrian\n"."Nama : $request->Nama\n". "Tanggal Daftar : $tanggal_daftar\n" . "Jam Daftar : $jam_daftar \n". "Unique Code : $nomorAntrian$tanggal_hari_ini\n");
-                
+                $qrcode = QrCode::size($qrsize)->generate("Nomor Antrian : $nomorAntrian\n" . "Nama : $request->Nama\n" . "Tanggal Daftar : $tanggal_daftar\n" . "Jam Daftar : $jam_daftar \n" . "Unique Code : $nomorAntrian$tanggal_hari_ini\n");
+
                 return back()->with([
                     'success' => 'Data berhasil ditambahkan',
                     'nomorAntrian' => "00" . $nomorAntrian,
@@ -117,7 +131,7 @@ class PasienController extends Controller
                 // // 'pendidikan' => $request->Pendidikan,
                 'pekerjaan' => $request->Pekerjaan
             ]);
-            
+
             // $kode= 100000+ (integer)$Pasien -> id ;
             // $nomer= substr($kode, 1, 5). $Pasien -> lahir -> format ('dmy');
             // $Pasien -> kodepasien = $nomer ;
@@ -125,13 +139,20 @@ class PasienController extends Controller
             $nomer = $Pasien->lahir->format('dmy');
             $Pasien->kodepasien = $nomer;
             $Pasien->save();
-            
+
             $latestpasien = Pasien::all()->last();
-            
-            
+
+
             $jam_daftar = $Pasien->created_at->format('H:i:s');
             $tanggal_daftar = $Pasien->created_at->format('d-m-Y');
-            $qrcode = QrCode::size($qrsize)->generate("Nomor Antrian : $nomorAntrian\n"."Nama : $request->Nama\n" . "Tanggal Daftar : $tanggal_daftar\n" . "Jam Daftar : $jam_daftar\n". "Unique Code : $nomorAntrian$tanggal_hari_ini\n");
+            $unique_code = "$nomorAntrian$tanggal_hari_ini";
+            $qrcode = QrCode::format('png')
+                            ->size($qrsize)
+                            ->generate("Nomor Antrian : $nomorAntrian\n" . "Nama : $request->Nama\n" . "Tanggal Daftar : $tanggal_daftar\n" . "Jam Daftar : $jam_daftar\n" . "Unique Code : $unique_code");
+
+            $output_file = '/img/qr-code/img-' . $unique_code . '.png';
+            Storage::disk('public')->put($output_file, $qrcode); //storage/app/public/img/qr-code/img-1557309130.png
+
             Rekam::create([
                 'nomorantrian' => "00" . $nomorAntrian,
                 'id_pasien' => $latestpasien->id,
@@ -139,7 +160,19 @@ class PasienController extends Controller
                 'keluhan' => $request->RekamMedis,
                 // 'id_dokter' => $request->doktor
             ]);
+            
+            $message = $twilio_client->messages
+                ->create(
+                    "whatsapp:+6282267450565",
+                    [
+                        "from" => "whatsapp:" . $twilio_whatsapp_number,
+                        "body" => "Terima kasih telah mendaftar di Klinik Desita.\nNomor antrian anda adalah *$nomorAntrian*\n Nama : $request->Nama\n Tanggal Daftar : $tanggal_daftar\n Jam Daftar : $jam_daftar\n". "Link *QR Code* : https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=$unique_code\n"
+                        // "mediaUrl" => [url("http://127.0.0.1:8000/storage".$output_file)]
+                    ]
+                );
 
+            // Log hasil pengiriman
+            Log::info("Message sent: " . $message->sid);
 
             return back()->with([
                 'success' => 'Data berhasil ditambahkan',
@@ -147,7 +180,9 @@ class PasienController extends Controller
                 'nama' => $request->Nama,
                 'timestamps' => $Pasien->created_at->format('H:i:s'),
                 'tanggaldaftar' => $Pasien->created_at->format('d-m-Y'),
-                'qrcode' => $qrcode
+                'qrcode' => $qrcode,
+                'qrpath' => asset("storage".$output_file),
+                "message" => "Message sent: " . $message
             ]);
         }
 
@@ -269,7 +304,8 @@ class PasienController extends Controller
             [
                 "Nama" => 'required',
                 "Lahir" => 'required',
-            ]);
+            ]
+        );
 
         $nama = $validated['Nama'];
         $lahir = $validated['Lahir'];
