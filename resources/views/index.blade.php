@@ -576,6 +576,7 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
                         <p class="h3">Nomor Antrian : <span class="text-primary">{{ Session::has('nomorAntrian') ? Session::get('nomorAntrian') : '' }}</span>
                         </p>
                         <p class="h3">Atas Nama : <span class="text-primary">{{ Session::has('nama') ? Session::get('nama') : '' }}</span></p>
+                        <p class="h3">Nomor HP : <span class="text-primary">{{ Session::has('client_number') ? Session::get('client_number') : '' }}</span></p>
                         <p>Daftar pada jam : <span class="text-primary">{{ Session::has('timestamps') ? Session::get('timestamps') : '' }}</span>
                         </p>
                         <img  width="250" src={!! Session::has('qrpath') ? Session::get('qrpath') : '' !!} />

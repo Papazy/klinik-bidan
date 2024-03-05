@@ -59,6 +59,7 @@ class PasienController extends Controller
         $token  = "64d28bb60c6949fcceada85553157360";
         $twilio_whatsapp_number = "+14155238886";
         $twilio_client = new Client($sid, $token);
+
         $this->validate(
             $request,
             [
@@ -85,11 +86,12 @@ class PasienController extends Controller
                     );
                     
                     $data = Pasien::where('nama', $request->Nama)->where('lahir', $request->Lahir)->get();
+
                     $client_number = $request->Telepon;
                     if (Str::startsWith($client_number, '08')) {
-                        // Jika ya, ubah "08" menjadi "+62"
-                        $client_number = Str::replaceFirst('08', '+62', $client_number);
+                        $client_number = '+62' . Str::substr($client_number, 1);
                     }
+                    
                     $nomorAntrian = 1;
                     $cekData = Rekam::whereDate('created_at', Carbon::today())->latest()->first();
                     
@@ -131,6 +133,7 @@ class PasienController extends Controller
                 'nik' => $request->NIK,
                 'kelamin' => $request->Kelamin,
                 'telepon' => $request->Telepon,
+                'client_number' => $client_number,
                 'agama' => $request->Agama,
                 // // 'pendidikan' => $request->Pendidikan,
                 'pekerjaan' => $request->Pekerjaan
