@@ -111,10 +111,24 @@ class PasienController extends Controller
                     'keluhan' => $request->RekamMedis,
                     // 'id_dokter' => $request->doktor
                 ]);
-
+                
+                $unique_code = "$nomorAntrian$tanggal_hari_ini";
                 $jam_daftar = $Rekam->created_at->format('H:i:s');
                 $tanggal_daftar = $Rekam->created_at->format('d-m-Y');
                 $qrcode = QrCode::size($qrsize)->generate("Nomor Antrian : $nomorAntrian\n" . "Nama : $request->Nama\n" . "Tanggal Daftar : $tanggal_daftar\n" . "Jam Daftar : $jam_daftar \n" . "Unique Code : $nomorAntrian$tanggal_hari_ini\n");
+
+                $message = $twilio_client->messages
+                ->create(
+                    "whatsapp:".$client_number,
+                    [
+                        "from" => "whatsapp:" . $twilio_whatsapp_number,
+                        "body" => "Terima kasih telah mendaftar di Klinik Desita.\nNomor antrian anda adalah *$nomorAntrian*\n Nama : $request->Nama\n Tanggal Daftar : $tanggal_daftar\n Jam Daftar : $jam_daftar\n". "Link *QR Code* : https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=$unique_code\n"
+                        // "mediaUrl" => [url("http://127.0.0.1:8000/storage".$output_file)]
+                    ]
+                );
+
+            // Log hasil pengiriman
+            Log::info("Message sent: " . $message->sid);
 
                 return back()->with([
                     'success' => 'Data berhasil ditambahkan',
@@ -122,7 +136,8 @@ class PasienController extends Controller
                     'nama' => $request->Nama,
                     'timestamps' => $Rekam->created_at->format('H:i:s'),
                     'tanggaldaftar' => $Rekam->created_at->format('d-m-Y'),
-                    'qrcode' => $qrcode
+                    'qrcode' => $qrcode,
+                    'qrpath' => asset("storage".$output_file)
                 ]);
             endforeach;
         } else {
@@ -150,9 +165,9 @@ class PasienController extends Controller
             $latestpasien = Pasien::all()->last();
 
 
+            $unique_code = "$nomorAntrian$tanggal_hari_ini";
             $jam_daftar = $Pasien->created_at->format('H:i:s');
             $tanggal_daftar = $Pasien->created_at->format('d-m-Y');
-            $unique_code = "$nomorAntrian$tanggal_hari_ini";
             $qrcode = QrCode::format('png')
                             ->size($qrsize)
                             ->generate("Nomor Antrian : $nomorAntrian\n" . "Nama : $request->Nama\n" . "Tanggal Daftar : $tanggal_daftar\n" . "Jam Daftar : $jam_daftar\n" . "Unique Code : $unique_code");
