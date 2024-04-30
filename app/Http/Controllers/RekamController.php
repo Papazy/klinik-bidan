@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Antrian;
 use App\Models\Rekam;
 use App\Models\Pasien;
 use App\Models\Dokter;
@@ -41,9 +42,9 @@ class RekamController extends Controller
     {
         $validate = $request->validate([
             'id_player' => 'required',
-            'layanan' => 'required',
+            // 'layanan' => 'required',
             'keluhan' => 'required',
-            'dokter' => 'required',
+            'jadwal' => 'required',
         	// 'g-recaptcha-response' => 'required|captcha'
         ],
         // [
@@ -54,18 +55,26 @@ class RekamController extends Controller
         // ],
         );
 
-        $nomorAntrian = 1;
-        $cekData = Rekam::whereDate('created_at', Carbon::today())->latest()->first();
-        if ($cekData) {
-            $nomorAntrian = $cekData->nomorantrian + 1;
-        }
+        $data_user = Pasien::where('id', $validate['id_player'])->first();
+        // Antrian
+        $obj_antrian = new Antrian();
+        $nomorAntrian = $obj_antrian->generateNoAntrian()['no_antrian'];
+        $tanggal = $obj_antrian->generateNoAntrian()['tanggal'];
+        $data_antrian = Antrian::create([
+            'no_antrian' => $nomorAntrian,
+            'pasien_id' => $validate['id_player'],
+            'jadwal_praktek' => $validate['jadwal'],
+            'jadwal_antrian' => $tanggal,
+            'tanggal_daftar_antrian' => Carbon::now(),
+        ]);
 
         $Rekam = Rekam::create([
             'nomorantrian' => "00" . $nomorAntrian,
             'id_pasien' => $validate['id_player'],
-            'layanan' => $validate['layanan'],
+            // 'layanan' => $validate['layanan'],
             'keluhan' => $validate['keluhan'],
-            'id_dokter' => $validate['dokter']
+            // 'jadwal' => $validate['jadwal'],
+            // 'id_dokter' => $validate['dokter']
         ]);
 
         $latestrekam = Rekam::all()->last();
@@ -76,7 +85,7 @@ class RekamController extends Controller
 
             return redirect('pasien-lama')->with([
                 'addsuccess' => 'Data berhasil ditambahkan',
-                'nomorAntrian' => "00" . $nomorAntrian,
+                'nomorAntrian' => "" . $nomorAntrian,
                 'nama' => $row->nama,
                 'timestamps' => $Rekam->created_at->format('H:i:s'),
                 'tanggaldaftar' => $Rekam->created_at->format('d-m-Y')

@@ -532,14 +532,14 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
                             </div>
                         </div>
 
-                        <!--------------------------------------------------------pilih dokter----------------------------------------------------------------------------------- -->
+                        <!--------------------------------------------------------pilih jadwal praktek----------------------------------------------------------------------------------- -->
                         <div class="form-group row mt-2">
                             <label class="col-form-label col-sm-2 pt-0">Jadwal Praktek</label>
                             <div class="col-sm">
                                 <select name="jadwal" class="form-control " required oninvalid="this.setCustomValidity('Silahkan pilih dokter yang tersedia')" oninput="setCustomValidity('')">
                                     <option value="">pilih jadwal...</option>
                                     @foreach ($jadwal as $row)
-                                    <option {{ $row->jadwalpraktek == 'LIBUR' ? 'disabled' : ''}} {{ $row->jadwalpraktek == 'CUTI' ? 'disabled' : ''}} value="{{ $row->id }}">
+                                    <option {{ $row->jadwalpraktek == 'LIBUR' ? 'disabled' : ''}} {{ $row->jadwalpraktek == 'CUTI' ? 'disabled' : ''}} value="{{ $row->jadwalpraktek }}">
                                         {{ $row->jadwalpraktek == '' ? 'Belum ada Jadwal' : $row->jadwalpraktek }}
                                     </option>
                                     @endforeach
@@ -569,67 +569,53 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
 
     <!--------------------------------------------------------modal kartu antrian----------------------------------------------------------------------------------->
     <div class="modal fade" id="antrian" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="antrianLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div id="kartuantrian">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">
-                            <img src="{{ asset('img/logo.png') }}" style=”float:left; width="55" ;height="55" ” />Klinik {{ env('APP_NAME') }}
-                        </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p class="h3">Nomor Antrian : <span class="text-primary">{{ Session::has('nomorAntrian') ? Session::get('nomorAntrian') : '' }}</span>
-                        </p>
-                        <p class="h3">Atas Nama : <span class="text-primary">{{ Session::has('nama') ? Session::get('nama') : '' }}</span></p>
-                        {{-- <p class="h3">Nomor HP : <span class="text-primary">{{ Session::has('client_number') ? Session::get('client_number') : '' }}</span></p> --}}
-                        <p>Daftar pada jam : <span class="text-primary">{{ Session::has('timestamps') ? Session::get('timestamps') : '' }}</span>
-                        </p>
-                        <img width="250" src={!! Session::has('qrpath') ? Session::get('qrpath') : '' !!} />
-
-                        {{-- <p>{{ Session::has('message') ? Session::get('message') : '' }}</p> --}}
-
-                        {{-- {{ dd(Session::has('message') ? Session::get('message') : '') }} --}}
-                    </div>
-                    <div class="modal-footer">
-                        <p>Tanggal : <span class="text-primary">{{ Session::has('tanggaldaftar') ? Session::get('tanggaldaftar') : '' }}</span>
-                        </p>
-                        <a type="button" class="btn btn-secondary" href="/antrian-pasien">
-                            <i class="fas fa-users me-2"></i>
-                            Cek Antrian
-                        </a>
-                        <button type="button" class="btn btn-primary" id="download">Simpan</button>
-                    </div>
+        <div class="modal-dialog modal-dialog-centered modal-lg"> <!-- Tambahkan kelas modal-lg di sini -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <img src="{{ asset('img/logo.png') }}" style="float: left; width: 55px; height: 55px;" class="me-2" alt="Logo">
+                    <h5 class="modal-title">Klinik {{ env('APP_NAME') }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="h3">Antrian: <span class="text-primary">{{ Session::get('nomorAntrian', '') }}</span></p>
+                    <p>Jadwal: <span class="text-primary">{{ Session::get('jadwalAntrian', '') }}</span></p>
+                    <p class="h3">Nama: <span class="text-primary">{{ Session::get('nama', '') }}</span></p>
+                    <p class="h5">kode pasien: <span class="text-primary">{{ Session::get('kodepasien', '') }}</span></p>
+                    <p>Daftar pada jam: <span class="text-primary">{{ Session::get('timestamps', '') }}</span></p>
+                    <img src={!! Session::has('qrpath') ? Session::get('qrpath') : '' !!} width="300" alt="QR Code">
+                </div>
+                <div class="modal-footer">
+                    <p>Tanggal: <span class="text-primary">{{ Session::get('tanggaldaftar', '') }}</span></p>
+                    <a href="/antrian-pasien" class="btn btn-secondary"><i class="fas fa-users me-2"></i>Cek Antrian</a>
+                    <button type="button" class="btn btn-primary" id="download">Simpan</button>
                 </div>
             </div>
         </div>
     </div>
+    
+    
 
     <!--------------------------------------------------------modal error----------------------------------------------------------------------------------->
 
     <div class="modal fade" id="error" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="antrianLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div id="kartuantrian">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">
-                            <img src="{{ asset('img/logo.png') }}" style=”float:left; width="55" ;height="55" ” />Klinik {{ env('APP_NAME') }}
-                        </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <img src="{{ asset('img/logo.png') }}" style="float:left; width:55px; height:55px;" class="mr-3" alt="Logo"> <!-- Perhatikan penyesuaian gaya pada tag ini -->
+                    <h5 class="modal-title">Klinik {{ env('APP_NAME') }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @if (Session::has('error'))
+                    <div class="alert alert-danger" role="alert">
+                        {{ Session::get('error') }}
                     </div>
-                    <div class="modal-body">
-                        @if (Session::has('error'))
-                            
-                            <div class="alert alert-danger" role="alert">
-                                {{ Session::get('error') }}
-                            </div>
-                 
                     @endif
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+    
 
     <!--------------------------------------------------------Bootstrap JS----------------------------------------------------------------------------------->
     <!-- Bootstrap core JS-->

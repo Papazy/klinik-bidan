@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Antrian;
 use App\Models\Dokter;
-use App\Models\User;
+use App\Models\Jadwal;
 use App\Models\Pasien;
 use App\Models\Rekam;
 use App\Models\Obat;
@@ -72,6 +73,7 @@ class PasienController extends Controller
                 'Agama' => 'required',
                 'Pekerjaan' => 'required',
                 'RekamMedis' => 'required',
+                'jadwal' => 'required'
             ]);
 
             // Format nomor telepon
@@ -90,13 +92,10 @@ class PasienController extends Controller
 
             // Dapatkan hasil lookup
             $isValid = $lookup->phoneNumber;
-            dd($lookup);
+            // dd($lookup);
             if (!$isValid) {
                 throw new \Exception('Nomor telepon tidak valid', 21211);
-            } 
-
-            // Mendapatkan nomor antrian berikutnya
-            $nomorAntrian = Rekam::whereDate('created_at', Carbon::today())->count() + 1;
+            }
 
 
             // Simpan data pasien atau temukan data pasien yang sudah ada
@@ -118,10 +117,28 @@ class PasienController extends Controller
                 $data->kodepasien = $kode_pasien;
                 $data->save();
             }
+            // Mendapatkan nomor antrian berikutnya
+            $obj_antrian = new Antrian();
+            $resAntrian = $obj_antrian->generateNoAntrian();
+            $nomorAntrian = $resAntrian["no_antrian"];
+            $jadwalAntrian = $resAntrian["tanggal"];
 
             // Buat nomor antrian dan QR Code
+            $data_antrian = Antrian::create([
+                'no_antrian' => $nomorAntrian,
+                'pasien_id' => $data->id,
+                'jadwal_praktek' => $request->jadwal,
+                'jadwal_antrian' => $jadwalAntrian,
+                'tanggal_daftar_antrian' => Carbon::today()
+            ]);
+
             $unique_code = "$nomorAntrian" . Carbon::today()->format('dmy');
-            $qrcode = QrCode::size(250)->generate("Nomor Antrian: $nomorAntrian\nNama: $request->Nama\nTanggal Daftar: " . Carbon::today()->format('d-m-Y') . "\nJam Daftar: " . Carbon::now()->format('H:i:s') . "\nUnique Code: $unique_code");
+            $qrcode = QrCode::format('png')
+                ->size(300)
+                ->generate("Nomor Antrian: $nomorAntrian\nNama: $request->Nama\nTanggal Daftar: " . Carbon::today()->format('d-m-Y') . "\nJam Daftar: " . Carbon::now()->format('H:i:s') . "\nUnique Code: $unique_code");
+
+            $output_file = '/img/qr-code/img-' . $unique_code . '.png';
+            Storage::disk('public')->put($output_file, $qrcode); //storage/app/public/img/qr-code/img-1557309130.png
 
             // Simpan data rekam medis
             Rekam::create([
@@ -141,16 +158,19 @@ class PasienController extends Controller
 
             // Log hasil pengiriman
             Log::info("Message sent: " . $message->sid);
+            // dd($message);
 
             // Kembalikan respons dengan data yang diperlukan
             return back()->with([
                 'success' => 'Data berhasil ditambahkan',
-                'nomorAntrian' => "00$nomorAntrian",
+                'nomorAntrian' => "$nomorAntrian",
+                'kodepasien' => $data->kodepasien,
                 'nama' => $request->Nama,
                 'timestamps' => Carbon::now()->format('H:i:s'),
                 'tanggaldaftar' => Carbon::today()->format('d-m-Y'),
+                'jadwalAntrian' => $jadwalAntrian,
                 'qrcode' => $qrcode,
-                'qrpath' => '', // Tidak perlu asset karena QR Code dihasilkan secara dinamis
+                'qrpath' => asset("storage" . $output_file), // Tidak perlu asset karena QR Code dihasilkan secara dinamis
                 "message" => "Message sent: " . $message->sid
             ]);
         } catch (\Exception $e) {
@@ -266,42 +286,53 @@ class PasienController extends Controller
     public function pasienlama()
     {
         $data = Dokter::all();
+        $jadwal = Jadwal::all();
         return view('pasien-lama', [
-            'dokter' => $data
+            'dokter' => $data,
+            'jadwal' => $jadwal
         ]);
     }
 
     public function cekpasienlama(Request $request)
     {
-        $validated = $request->validate(
-            [
+        $q = $request->q;
+
+        // Validasi input berdasarkan nilai 'q'
+        $validated = [];
+        if ($q == "nama") {
+            $validated = $request->validate([
                 "Nama" => 'required',
-                "Lahir" => 'required',
-            ]
-        );
+            ]);
+        } elseif ($q == "kodepasien") {
+            $validated = $request->validate([
+                "kodepasien" => 'required',
+            ]);
+        }
 
-        $nama = $validated['Nama'];
-        $lahir = $validated['Lahir'];
-
-        $data = Pasien::where('nama', $nama)->where('lahir', $lahir)->get();
-
-        if (count($data) > 0) {
-            foreach ($data as $row) :
+        // Lakukan pencarian berdasarkan nilai 'q' yang sudah divalidasi
+        $data = Pasien::where($q, $validated[$q])->get();
+        $jadwal = Jadwal::all();
+        if ($data->isNotEmpty()) {
+            // Jika data ditemukan, redirect ke halaman pasien-lama dengan data yang ditemukan
+            foreach ($data as $row) {
                 return redirect('/pasien-lama')->with([
                     'success' => 'Data ditemukan',
                     'nama' => $row->nama,
                     'lahir' => $row->lahir->format('d - M(m) - Y'),
                     'alamat' => $row->alamat,
                     'kelamin' => $row->kelamin,
-                    'id' => $row->id
+                    'id' => $row->id,
+                    'jadwal' => $jadwal
                 ]);
-            endforeach;
+            }
         } else {
+            // Jika data tidak ditemukan, redirect ke halaman pasien-lama dengan pesan gagal
             return redirect('/pasien-lama')->with([
                 'failed' => 'Data tidak ditemukan'
             ]);
         }
     }
+
 
     public function rekamstore(Request $request)
     {

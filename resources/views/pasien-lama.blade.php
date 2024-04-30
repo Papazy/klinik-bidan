@@ -19,7 +19,13 @@
     <link href="css/styles-index.css" rel="stylesheet" />
     <link href="{{ asset('img/icon.ico') }}" rel="SHORTCUT ICON" />
 </head>
-
+<?php
+    if (isset($_GET['q'])) {
+        $q = $_GET['q'];
+    } else {
+        $q = '';
+    }
+?>
 <body id="page-top" onload="initClock()">
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
@@ -79,10 +85,27 @@
     <!--------------------------------------------------------Bagian Isi Konten----------------------------------------------------------------------------------->
     <section class="page-section portfolio" id="lama">
         <div class="container">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    @if ($q == 'nama')
+                    Nama
+                    @elseif ($q == 'kodepasien')
+                    Kode Pasien
+                    @else
+                    Cari Berdasarkan
+                    @endif
 
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="?q=nama">Nama</a></li>
+                    <li><a class="dropdown-item" href="?q=kodepasien">Kode Pasien</a></li>
+                </ul>
+            </div>
+            @if ($q == 'nama' || $q == '')
             <form action="/cekpasienlama" method="POST">
                 @csrf
                 <!--------------------------------------------------------Nama----------------------------------------------------------------------------------->
+                <input type="hidden" name="q" value="nama">
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Nama Lengkap</label>
                     <div class="col-sm-5">
@@ -90,22 +113,33 @@
                     </div>
                 </div>
                 </--------------------------------------------------------Lahir-----------------------------------------------------------------------------------* />
+
+                <br>
+                <button type="submit" class="btn btn-warning col-sm-2">
+                    <i class="fas fa-search"></i> Cari</button>
+
+            </form>
+            @elseif ($q == 'kodepasien')
+            <form action="/cekpasienlama" method="POST">
+                @csrf
+                <!--------------------------------------------------------Kode Pasien----------------------------------------------------------------------------------->
+                <input type="hidden" name="q" value="kodepasien">
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Lahir</label>
+                    <label class="col-sm-2 col-form-label">Kode Pasien</label>
                     <div class="col-sm-5">
-                        <input type="date" class="form-control @error('Lahir') is-invalid @enderror" name="Lahir" placeholder="Lahir">
-                        @error('Lahir')
-                        <div class="invalid-feedback">
-                            "tanggal lahir masih kosong
-                        </div>
-                        @enderror
+                        <input type="text" class="form-control" name="kodepasien" placeholder="Kode Pasien" required="required" oninvalid="this.setCustomValidity('Kode Pasien tidak boleh kosong')" oninput="setCustomValidity('')">
                     </div>
                 </div>
                 <br>
                 <button type="submit" class="btn btn-warning col-sm-2">
                     <i class="fas fa-search"></i> Cari</button>
+
+            </form>
+            @endif
         </div>
-        </form>
+
+
+
     </section>
 
     <!--------------------------------------------------------modal kartu pasien----------------------------------------------------------------------------------->
@@ -136,7 +170,7 @@
                             <div class="form-group row mt-2">
                                 <input type="text" value="{{ Session::get('id') }}" name="id_player" readonly hidden>
                             </div>
-                            <div class="form-group row mt-2">
+                            {{-- <div class="form-group row mt-2">
                                 <label class="col-form-label col-sm-2 pt-0">Layanan</label>
                                 <div class="col-sm">
                                     <select name="layanan" class="form-control " required oninvalid="this.setCustomValidity('Pribadi / Asuransi?')" oninput="setCustomValidity('')">
@@ -145,7 +179,7 @@
                                         <option value="Asuransi">Asuransi</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div> --}}
                             <!--------------------------------------------------------rekam medis----------------------------------------------------------------------------------- -->
                             <div class="form-group row mt-2">
                                 <label class="col-sm-2 col-form-label">Keluhan</label>
@@ -154,8 +188,23 @@
                                 </div>
                             </div>
 
-                            <!--------------------------------------------------------pilih dokter----------------------------------------------------------------------------------- -->
+
+                            <!--------------------------------------------------------pilih jadwal Praktik----------------------------------------------------------------------------------- -->
                             <div class="form-group row mt-2">
+                                <label class="col-form-label col-sm-2 pt-0">Jadwal Praktek</label>
+                                <div class="col-sm">
+                                    <select name="jadwal" class="form-control " required oninvalid="this.setCustomValidity('Silahkan pilih dokter yang tersedia')" oninput="setCustomValidity('')">
+                                        <option value="">pilih jadwal...</option>
+                                        @foreach ($jadwal as $row)
+                                        <option {{ $row->jadwalpraktek == 'LIBUR' ? 'disabled' : ''}} {{ $row->jadwalpraktek == 'CUTI' ? 'disabled' : ''}} value="{{ $row->jadwalpraktek }}">
+                                            {{ $row->jadwalpraktek == '' ? 'Belum ada Jadwal' : $row->jadwalpraktek }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <!--------------------------------------------------------pilih dokter----------------------------------------------------------------------------------- -->
+                            {{-- <div class="form-group row mt-2">
                                 <label class="col-form-label col-sm-2 pt-0">Dokter</label>
                                 <div class="col-sm">
                                     <select name="dokter" class="form-control " required oninvalid="this.setCustomValidity('pilih dokter yang tersedia...')" oninput="setCustomValidity('')">
@@ -168,12 +217,12 @@
                                         @endforeach
                                     </select>
                                 </div>
-                            </div>
-
+                            </div> --}}
+{{-- 
                             <div class="mt-2 d-flex justify-content-center">
                                 {!! NoCaptcha::renderJs() !!}
                                 {!! NoCaptcha::display() !!}
-                            </div>
+                            </div> --}}
 
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-primary">Daftar</button>
@@ -321,6 +370,7 @@
         $(document).ready(function() {
             $('#error').modal('show')
         });
+
     </script>
     @endif
 
@@ -338,6 +388,7 @@
             $('#antrian').modal('show')
         });
         @endif
+
     </script>
 
     <!--------------------------------------------------------modal antrian----------------------------------------------------------------------------------->
@@ -347,6 +398,7 @@
             $('#antrian').modal('show')
         });
         @endif
+
     </script>
     <!--------------------------------------------------------fungsi inputan angka/number only----------------------------------------------------------------------------------->
     <script>
@@ -384,20 +436,21 @@
         setInputFilter(document.getElementById("notelp"), function(value) {
             return /^-?\d*$/.test(value);
         }, "Isi dengan Angka");
+
     </script>
 
     <!--------------------------------------------------------fungsi jam----------------------------------------------------------------------------------->
     <script type="text/javascript">
         function updateClock() {
             var now = new Date();
-            var dname = now.getDay(),
-                mo = now.getMonth(),
-                dnum = now.getDate(),
-                yr = now.getFullYear(),
-                hou = now.getHours(),
-                min = now.getMinutes(),
-                sec = now.getSeconds(),
-                pe = "AM";
+            var dname = now.getDay()
+                , mo = now.getMonth()
+                , dnum = now.getDate()
+                , yr = now.getFullYear()
+                , hou = now.getHours()
+                , min = now.getMinutes()
+                , sec = now.getSeconds()
+                , pe = "AM";
 
             if (hou >= 12) {
                 pe = "PM";
@@ -426,6 +479,7 @@
             updateClock();
             window.setInterval("updateClock()", 1);
         }
+
     </script>
 
     <!--------------------------------------------------------fungsi download kartu antrian----------------------------------------------------------------------------------->
@@ -454,6 +508,7 @@
                 window.open(uri);
             }
         }
+
     </script>
 </body>
 
