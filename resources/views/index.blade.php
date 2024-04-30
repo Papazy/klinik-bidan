@@ -1,6 +1,13 @@
 <?php
 $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073!2d117.22912786566681!3d-0.8342596379442541!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xcd748a34b972a55b!2sKlinik%20Maju%20Sejahtera!5e1!3m2!1sid!2sid!4v1664207204197!5m2!1sid!2sid";
+// if(Session::has("success")){
+//     dd(Session::get("success"));
+// }elseif(Session::has("error")){
+//     dd(Session::get("error"));
+// }
+
 ?>
+
 
 
 <!DOCTYPE html>
@@ -69,8 +76,7 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
 
     <!--------------------------------------------------------Bagian Isi Konten Teratas----------------------------------------------------------------------------------->
     {{-- @if($errors)
-    {{ dd($errors) }}
-    @endif --}}
+    {{ dd($var_dump(Session::all); --}}
     <header class="masthead bg-primary text-white text-center">
         <div class="container d-flex align-items-center flex-column">
             <!-- Masthead Avatar Image-->
@@ -127,8 +133,8 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
                         <img class="img-fluid" src="img/luar1.jpg" alt="..." />
                     </div>
                 </div>
-                
-                
+
+
             </div>
         </div>
     </section>
@@ -150,7 +156,7 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
                         <i class="fas fa-book me-2"></i>
                         Daftar Sebagai Pasien
                     </button>
-                    
+
                 </div>
                 <div class="col-lg-4 me-auto">
                     <p class="lead">Anda bisa mendaftar secara online tanpa perlu mengantri atau
@@ -158,34 +164,34 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
                             <i class="fas fa-users me-2"></i>
                             Cek Antrian disini
                         </a></p>
-                    </div>
-                </div>
-                <!--------------------------------------------------------Login Sebagai Staff Klinik----------------------------------------------------------------------------------->
-                <div class="text-center mt-4">
-                    <a class="btn btn-xl btn-outline-light" href="/dashboard">
-                        <i class="fas fa-user me-2"></i>
-                        Masuk Sebagai Staff
-                    </a>
                 </div>
             </div>
-        </section>
-        <!--------------------------------------------------------Kontak Klinik----------------------------------------------------------------------------------->
-        <section class="page-section" id="contact">
-            <div class="container">
-                <!-- Contact Section Heading-->
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">ALAMAT</h2>
-                <!-- Icon Divider-->
-                
-                <div class="divider-custom">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-map"></i></div>
-                    <div class="divider-custom-line"></div>
-                </div>
+            <!--------------------------------------------------------Login Sebagai Staff Klinik----------------------------------------------------------------------------------->
+            <div class="text-center mt-4">
+                <a class="btn btn-xl btn-outline-light" href="/dashboard">
+                    <i class="fas fa-user me-2"></i>
+                    Masuk Sebagai Staff
+                </a>
+            </div>
+        </div>
+    </section>
+    <!--------------------------------------------------------Kontak Klinik----------------------------------------------------------------------------------->
+    <section class="page-section" id="contact">
+        <div class="container">
+            <!-- Contact Section Heading-->
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">ALAMAT</h2>
+            <!-- Icon Divider-->
 
-                
+            <div class="divider-custom">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-map"></i></div>
+                <div class="divider-custom-line"></div>
+            </div>
+
+
             <div class="google-map"><iframe frameborder="0" style="border:0" width="100%" height="250" src=<?php echo $mappp; ?> allowfullscreen=""></iframe></div>
-            
-            
+
+
             <div class="divider-custom">
                 <div class="divider-custom-line"></div>
                 <div class="divider-custom-icon"><i class="fas fa-map"></i></div>
@@ -354,7 +360,7 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
                                     <div class="divider-custom-line"></div>
                                 </div>
                                 <!-- Portfolio Modal - Image-->
-                                <img class="img-fluid rounded mb-5" src="img/luar3.jpg" alt="..." />
+                                <img class="img-fluid rounded mb-5" src="img/luar1.jpg" alt="..." />
                                 <!-- Portfolio Modal - Text-->
                                 <p class="mb-4">======</p>
                                 <button class="btn btn-primary" data-bs-dismiss="modal">
@@ -579,8 +585,8 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
                         {{-- <p class="h3">Nomor HP : <span class="text-primary">{{ Session::has('client_number') ? Session::get('client_number') : '' }}</span></p> --}}
                         <p>Daftar pada jam : <span class="text-primary">{{ Session::has('timestamps') ? Session::get('timestamps') : '' }}</span>
                         </p>
-                        <img  width="250" src={!! Session::has('qrpath') ? Session::get('qrpath') : '' !!} />
-                        
+                        <img width="250" src={!! Session::has('qrpath') ? Session::get('qrpath') : '' !!} />
+
                         {{-- <p>{{ Session::has('message') ? Session::get('message') : '' }}</p> --}}
 
                         {{-- {{ dd(Session::has('message') ? Session::get('message') : '') }} --}}
@@ -600,6 +606,7 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
     </div>
 
     <!--------------------------------------------------------modal error----------------------------------------------------------------------------------->
+
     <div class="modal fade" id="error" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="antrianLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div id="kartuantrian">
@@ -611,10 +618,13 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        @foreach ($errors->all() as $item)
-                        <div class="alert alert-danger" role="alert">
-                        </div>
-                        @endforeach
+                        @if (Session::has('error'))
+                            
+                            <div class="alert alert-danger" role="alert">
+                                {{ Session::get('error') }}
+                            </div>
+                 
+                    @endif
                     </div>
                 </div>
             </div>
@@ -634,14 +644,14 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
     <!--------------------------------------------------------modal antrian----------------------------------------------------------------------------------->
-    @if ($errors->any())
     <script>
+        @if (Session::has("error"))
         $(document).ready(function() {
             $('#error').modal('show')
         });
 
+        @endif
     </script>
-    @endif
 
     <script>
         @if(Session::has('nomorAntrian'))
