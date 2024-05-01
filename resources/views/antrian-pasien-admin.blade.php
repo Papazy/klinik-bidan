@@ -51,10 +51,10 @@
             <div id="reader" width="600px"></div>
         </div>
         <div class="col-4">
-            <input type="text" id="results"> 
+            <input type="text" id="results">
         </div>
     </div>
-    
+
 
 
     <br>
@@ -72,9 +72,9 @@
                     <th>Nama</th>
                     <th>Tanggal Lahir</th>
                     <th>Jenis Kelamin</th>
-                    <th>Jenis Layanan</th>
+                    {{-- <th>Jenis Layanan</th> --}}
                     <th>Keluhan</th>
-                    <th>Dokter</th>
+                    {{-- <th>Dokter</th> --}}
 
                     <th>Alamat</th>
                     <th>NIK</th>
@@ -91,24 +91,31 @@
                 @foreach($datarekam as $row)
                 <tr>
                     <td>{{ $count = $count + 1 }}</td>
-                    <td><a href="{{ route('rekam.edit', $row->id) }}" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-original-title="Lihat Pasien">
-                            <i class="fas fa-pen text-white"></i>
-                        </a>
-                        <form action="{{ route('rekam.destroy', $row->id) }}" method="POST">
-                            @method('DELETE')
-                            @csrf
-                            <button type="submit" class="btn btn-danger" onClick="return confirm('Yakin ingin hapus data?')">
-                                <i class="fas fa-trash"></i></button>
-                        </form>
+                    <td class="d-flex gap-1">
+                        <div>
+                            <a href="{{ route('rekam.edit', $row->id) }}" class="btn btn-warning me-2" data-bs-toggle="tooltip" data-bs-original-title="Lihat Pasien">
+                                <i class="fas fa-pen text-white"></i>
+                            </a>
+                        </div>
+                        <div class="ml-1">
+
+                            <form action="{{ route('rekam.destroy', $row->id) }}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit" class="btn btn-danger" onClick="return confirm('Yakin ingin hapus data?')">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
+                        </div>
                     </td>
                     <td>{{ $row->nomorantrian }}</td>
                     <td>{{ $row->updated_at->format('H:i:s -- d/m/Y'); }}</td>
                     <td>{{ $row->pasien->nama }}</td>
                     <td>{{ $row->pasien->lahir->format('d/M/Y'); }}</td>
                     <td>{{ $row->pasien->kelamin }}</td>
-                    <td>{{ $row->layanan }}</td>
+                    {{-- <td>{{ $row->layanan }}</td> --}}
                     <td>{{ $row->keluhan }}</td>
-                    <td>{{ $row->dokter->nama ?? "Dokter Tidak ada"}}</td>
+                    {{-- <td>{{ $row->dokter->nama ?? "Dokter Tidak ada"}}</td> --}}
                     <td>{{ $row->pasien->alamat }}</td>
                     <td>{{ $row->pasien->nik }}</td>
                     <td>
@@ -196,7 +203,3 @@
 </script>
 @endpush
 @endsection
-
-
-
-
