@@ -73,7 +73,7 @@ Route::group(['middleware' => 'isAdmin'], function () {
     route::resource('/pasien', PasienController::class, [
         'except' => ['store']
     ])->middleware('auth');
-    Route::resource('rekam', RekamController::class)->middleware('auth');
+    Route::resource('/rekam', RekamController::class)->middleware('auth');
     route::resource('/dokter', DokterController::class)->middleware('auth');
     Route::resource('/diagnosatools', DiagnosaController::class)->middleware('auth');
     Route::resource('/obat', ObatController::class)->middleware('auth');
