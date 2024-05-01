@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Antrian;
 use App\Models\Dokter;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -96,7 +97,8 @@ class DashboardController extends Controller
     }
 
     public function antrianpasien(){
-    $data =Rekam::where('diagnosa', null)->get();
+    $data =Antrian::all();
+    // dd($data[0]->pasien);
         return view('antrian-pasien-admin', [
             'datarekam' => $data
         ]);

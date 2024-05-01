@@ -108,7 +108,7 @@
                             </form>
                         </div>
                     </td>
-                    <td>{{ $row->nomorantrian }}</td>
+                    <td>{{ $row->no_antrian }}</td>
                     <td>{{ $row->updated_at->format('H:i:s -- d/m/Y'); }}</td>
                     <td>{{ $row->pasien->nama }}</td>
                     <td>{{ $row->pasien->lahir->format('d/M/Y'); }}</td>

@@ -51,4 +51,9 @@ class Pasien extends Model
         return $kode_pasien;
     }
 
+    public function antrians()
+    {
+        return $this->hasMany(Antrian::class);
+    }
+
 }

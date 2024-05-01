@@ -21,6 +21,12 @@ class Antrian extends Model
         'tanggal_daftar_antrian',
     ];
 
+    // Relasi ke pasien
+    public function pasien()
+    {
+        return $this->belongsTo(Pasien::class);
+    }
+
    
     public function generateNoAntrian(){
         // Generate no antrian dengan maksimal 15 peserta perhari, 

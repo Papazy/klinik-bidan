@@ -1,5 +1,5 @@
 <?php
-$mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.7933967249073!2d117.22912786566681!3d-0.8342596379442541!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xcd748a34b972a55b!2sKlinik%20Maju%20Sejahtera!5e1!3m2!1sid!2sid!4v1664207204197!5m2!1sid!2sid";
+$mappp = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3973.414706876548!2d96.7046359!3d5.197323400000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3047432996ce7095%3A0x21e35dbd6f11d7f9!2sPraktek%20Mandiri%20Bidan%20Desita!5e0!3m2!1sid!2sid!4v1714560687778!5m2!1sid!2sid";
 // if(Session::has("success")){
 //     dd(Session::get("success"));
 // }elseif(Session::has("error")){
@@ -105,14 +105,14 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
                 <div class="divider-custom-line"></div>
             </div>
             <!-- Portfolio Grid Items-->
-            <div class="row justify-content-center">
+            <div class="row justify-content-center align-items-center">
                 <!-- Portfolio Item 1-->
                 <div class="col-md-6 col-lg-4 mb-5">
                     <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
                         <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
-                        <img class="img-fluid" src="img/dalam2.jpg" alt="..." />
+                        <img class="img-fluid" src="img/klinikdesita2.jpg" alt="..." />
                     </div>
                 </div>
                 <!-- Portfolio Item 2-->
@@ -121,7 +121,7 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
                         <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
-                        <img class="img-fluid" src="img/dalam1.jpg" alt="..." />
+                        <img class="img-fluid" src="img/klinikdesita1.jpg" alt="..." />
                     </div>
                 </div>
                 <!-- Portfolio Item 3-->
@@ -130,7 +130,7 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
                         <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
-                        <img class="img-fluid" src="img/luar1.jpg" alt="..." />
+                        <img class="img-fluid" src="img/klinikdesita3.jpg" alt="..." />
                     </div>
                 </div>
 
@@ -233,7 +233,40 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
         <div class="container"><small>Copyright &copy; Klinik {{ env('APP_NAME') }} 2024</small></div>
     </div>
     <!-- Portfolio Modals-->
-
+    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" aria-labelledby="portfolioModal2" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center pb-5">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <!-- Portfolio Modal - Title-->
+                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Ruang Klinik Desita
+                                </h2>
+                                <!-- Icon Divider-->
+                                <div class="divider-custom">
+                                    <div class="divider-custom-line"></div>
+                                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                    <div class="divider-custom-line"></div>
+                                </div>
+                                <!-- Portfolio Modal - Image-->
+                                <img class="img-fluid rounded mb-5" src="img/klinikdesita2.jpg" alt="..." />
+                                <!-- Portfolio Modal - Text-->
+                                <p class="mb-4">======</p>
+                                <button class="btn btn-primary" data-bs-dismiss="modal">
+                                    <i class="fas fa-xmark fa-fw"></i>
+                                    Close Window
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Portfolio Modal 2-->
     <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" aria-labelledby="portfolioModal2" aria-hidden="true">
         <div class="modal-dialog modal-xl">
@@ -246,7 +279,7 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
                                 <!-- Portfolio Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Ruang Tunggu 1
+                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Halaman Luar
                                 </h2>
                                 <!-- Icon Divider-->
                                 <div class="divider-custom">
@@ -255,7 +288,7 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
                                     <div class="divider-custom-line"></div>
                                 </div>
                                 <!-- Portfolio Modal - Image-->
-                                <img class="img-fluid rounded mb-5" src="img/dalam1.jpg" alt="..." />
+                                <img class="img-fluid rounded mb-5" src="img/klinikdesita1.jpg" alt="..." />
                                 <!-- Portfolio Modal - Text-->
                                 <p class="mb-4">======</p>
                                 <button class="btn btn-primary" data-bs-dismiss="modal">
@@ -281,7 +314,7 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
                                 <!-- Portfolio Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Halaman Parkiran
+                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Ruangan Klinik Desita
                                 </h2>
                                 <!-- Icon Divider-->
                                 <div class="divider-custom">
@@ -290,7 +323,7 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
                                     <div class="divider-custom-line"></div>
                                 </div>
                                 <!-- Portfolio Modal - Image-->
-                                <img class="img-fluid rounded mb-5" src="img/luar1.jpg" alt="..." />
+                                <img class="img-fluid rounded mb-5" src="img/klinikdesita3.jpg" alt="..." />
                                 <!-- Portfolio Modal - Text-->
                                 <p class="mb-4">======</p>
                                 <button class="btn btn-primary" data-bs-dismiss="modal">
@@ -316,8 +349,7 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
                                 <!-- Portfolio Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Aktifitas
-                                    Pendaftaran</h2>
+                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Ruangan Klinik Desita</h2>
                                 <!-- Icon Divider-->
                                 <div class="divider-custom">
                                     <div class="divider-custom-line"></div>
@@ -325,7 +357,7 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
                                     <div class="divider-custom-line"></div>
                                 </div>
                                 <!-- Portfolio Modal - Image-->
-                                <img class="img-fluid rounded mb-5" src="img/dalam2.jpg" alt="..." />
+                                <img class="img-fluid rounded mb-5" src="img/klinikdesita1.jpg" alt="..." />
                                 <!-- Portfolio Modal - Text-->
                                 <p class="mb-4">======</p>
                                 <button class="btn btn-primary" data-bs-dismiss="modal">
@@ -360,7 +392,7 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2552.793396724907
                                     <div class="divider-custom-line"></div>
                                 </div>
                                 <!-- Portfolio Modal - Image-->
-                                <img class="img-fluid rounded mb-5" src="img/luar1.jpg" alt="..." />
+                                <img class="img-fluid rounded mb-5" src="img/klinikdesita1.jpg" alt="..." />
                                 <!-- Portfolio Modal - Text-->
                                 <p class="mb-4">======</p>
                                 <button class="btn btn-primary" data-bs-dismiss="modal">
