@@ -7,9 +7,17 @@ use App\Models\Dokter;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use App\Models\Rekam; 
-use App\Models\Obat; 
-use App\Models\Pasien; 
+use App\Models\Rekam;
+use App\Models\Obat;
+use App\Models\Pasien;
+
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+// require_once 'vendor/autoload.php';
+use Twilio\Rest\Client;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+
 
 class DashboardController extends Controller
 {
@@ -89,22 +97,25 @@ class DashboardController extends Controller
         //
     }
 
-    public function pendaftaran(){
+    public function pendaftaran()
+    {
         $data = Dokter::all();
         return view('pendaftaran', [
             'dokter' => $data
         ]);
     }
 
-    public function antrianpasien(){
-    $data =Antrian::all();
-    // dd($data[0]->pasien);
+    public function antrianpasien()
+    {
+        $data = Antrian::all();
+        // dd($data[0]->pasien);
         return view('antrian-pasien-admin', [
             'datarekam' => $data
         ]);
     }
 
-    public function cekpasienlama(Request $request){
+    public function cekpasienlama(Request $request)
+    {
         $validated = $request->validate([
             "Nama" => 'required',
             "Lahir" => 'required'
@@ -115,25 +126,26 @@ class DashboardController extends Controller
 
         $data = DB::table('pasiens')->where('nama', $nama)->where('lahir', $lahir)->get();
 
-        if(count($data)>0){
-            foreach($data as $row):
-            return redirect('/pendaftaran')->with([
-                'success' => 'Data ditemukan',
-                'nama' => $row->nama,
-                'lahir' => $row->lahir,
-                'alamat' => $row->alamat,
-                'kelamin' => $row->kelamin,
-                'id' => $row->id
-            ]);
+        if (count($data) > 0) {
+            foreach ($data as $row) :
+                return redirect('/pendaftaran')->with([
+                    'success' => 'Data ditemukan',
+                    'nama' => $row->nama,
+                    'lahir' => $row->lahir,
+                    'alamat' => $row->alamat,
+                    'kelamin' => $row->kelamin,
+                    'id' => $row->id
+                ]);
             endforeach;
-        } else{
+        } else {
             return redirect('/pendaftaran')->with([
                 'failed' => 'Data tidak ditemukan'
             ]);
         }
     }
 
-    public function addrekam(Request $request){
+    public function addrekam(Request $request)
+    {
         $validate = $request->validate([
             'id_player' => 'required',
             // 'layanan' => 'required',
@@ -159,7 +171,7 @@ class DashboardController extends Controller
         $pasienid = $latestrekam->id_pasien;
         $pasientable = DB::table('pasiens')->where('id', $pasienid)->get();
 
-        foreach ($pasientable as $row):
+        foreach ($pasientable as $row) :
 
             return redirect('pendaftaran')->with([
                 'addsuccess' => 'Data berhasil ditambahkan'
@@ -168,90 +180,112 @@ class DashboardController extends Controller
         endforeach;
     }
 
-    public function diagnosa(){
+    public function diagnosa()
+    {
         $data = Rekam::where('diagnosa', null)->get();
         return view('diagnosa', [
             'data' => $data
-        ]); 
+        ]);
     }
 
-    public function diagnosaform($id){
+    public function diagnosaform($id)
+    {
         $data = DB::table('rekams')->where('id', $id)->get();
         return view('diagnosa-form', [
             'data' => $data
-        ]); 
+        ]);
     }
 
-    public function tambahpasienform(){
+    public function tambahpasienform()
+    {
         $data = Dokter::all();
         return view('tambahpasienform', [
             'dokter' => $data
         ]);
     }
 
-    public function tambahpasien(Request $request){
-        $this->validate($request, [
-            'Nama' => 'required',
-            'Alamat' => 'required',
-            'Lahir' => 'required',
-            'NIK' => 'required',
-            'Kelamin' => 'required',
-            'Telepon' => 'required',
-            'Agama' => 'required',
-            // 'Pendidikan' => 'required',
-            'Pekerjaan' => 'required',
-            // 'layanan' => 'required',
-            'RekamMedis' => 'required',
-            // 'dokter' => 'required'
-        ]);
+    public function tambahpasien(Request $request)
+    {
+        try {
+            // Inisialisasi klien Twilio dan data Twilio
+            $sid = "AC01dae14034bd9fcbf4d4bc2a2ea30887";
+            $token = "64d28bb60c6949fcceada85553157360";
+            $twilio_whatsapp_number = "+14155238886";
+            $twilio_client = new Client($sid, $token);
 
-        $Pasien= Pasien::create([
-            'nama'=>ucwords(strtolower($request->Nama)),
-            'alamat'=>$request->Alamat,            
-            'lahir'=>$request->Lahir,            
-            'nik'=>$request->NIK,
-            'kelamin'=>$request->Kelamin,
-            'telepon'=>$request->Telepon,
-            'agama'=>$request->Agama,
-            // 'pendidikan'=>$request->Pendidikan,
-            'pekerjaan'=>$request->Pekerjaan
-        ]);
-
-        // $kode= 100000+ (integer)$Pasien -> id;
-        // $nomer= substr($kode, 1, 5). $Pasien -> lahir -> format ('dmy');
-        // $Pasien -> kodepasien = $nomer ;
-        // $Pasien -> save();
-        
-        $nomer= $Pasien -> lahir -> format ('dmy');
-        $Pasien -> kodepasien = $nomer ;
-        $Pasien -> save();
-
-        $nomorAntrian = 1;
-        $cekData = Rekam::whereDate('created_at', Carbon::today())->latest()->first();
-        if($cekData){
-            $nomorAntrian = $cekData->nomorantrian + 1;
-        }
-
-        $latestpasien = Pasien::all()->last();
-        Rekam::create([
-            'nomorantrian' => "00".$nomorAntrian,
-            'id_pasien' => $latestpasien->id,
-            // // 'layanan' => $request->layanan,
-            'keluhan' => $request->RekamMedis,
-            // 'id_dokter' => $request->dokter
-        ]);
-
-        if (isset($request->daftarPasien)){
-            return back()->with([
-                'success' => 'Data berhasil ditambahkan',
-                'nomorAntrian' => "00".$nomorAntrian,
-				'nama' => $request->Nama,
-				'timestamps' => $Pasien->created_at -> format ('H:i:s'),
-				'tanggaldaftar' => $Pasien->created_at -> format ('d-m-Y')
+            // Validasi data input
+            $this->validate($request, [
+                'Nama' => 'required',
+                'Alamat' => 'required',
+                'Lahir' => 'required',
+                'NIK' => 'required',
+                'Kelamin' => 'required',
+                'Telepon' => 'required|numeric', // Memastikan telepon berupa angka
+                'Agama' => 'required',
+                'Pekerjaan' => 'required',
             ]);
-        }
 
-        return redirect('/pendaftaran')->with('addsuccess','Data berhasil ditambahkan');
+            // Format nomor telepon
+            $client_number = $request->Telepon;
+            if (Str::startsWith($client_number, '08')) {
+                $client_number = '+62' . Str::substr($client_number, 1);
+            } elseif (Str::startsWith($client_number, '+62')) {
+                $client_number = '' . $client_number;
+            } elseif (Str::startsWith($client_number, '62')) {
+                $client_number = '+62' . Str::substr($client_number, 2);
+            } else {
+                throw new \Exception('Nomor telepon tidak valid', 21211);
+            }
+
+            $lookup = $twilio_client->lookups->v1->phoneNumbers($client_number)->fetch();
+
+            // Dapatkan hasil lookup
+            $isValid = $lookup->phoneNumber;
+            // dd($lookup);
+            if (!$isValid) {
+                throw new \Exception('Nomor telepon tidak valid', 21211);
+            }
+
+
+            // Simpan data pasien atau temukan data pasien yang sudah ada
+            $data = Pasien::firstOrCreate([
+                'nama' => ucwords(strtolower($request->Nama)),
+                'alamat' => $request->Alamat,
+                'lahir' => $request->Lahir,
+                'nik' => $request->NIK,
+                'kelamin' => $request->Kelamin,
+                'telepon' => $client_number,
+                'agama' => $request->Agama,
+                'pekerjaan' => $request->Pekerjaan
+            ]);
+
+            // Periksa apakah data tersebut sudah memiliki kodepasien
+            if (!$data->kodepasien) {
+                // Jika belum, buat kode pasien baru
+                $kode_pasien = $data->generateKodePasien();
+                $data->kodepasien = $kode_pasien;
+                $data->save();
+            }
+            if($request->has('Catatan')){
+                $data->catatan = $request->Catatan;
+                $data->save();
+            }
+
+         
+                return back()->with([
+                    'success' => 'Data berhasil ditambahkan',
+                    'kodepasien' => $data->kodepasien,
+                    'nama' => $request->Nama,
+                    'timestamps' => Carbon::now()->format('H:i:s'),
+                    'tanggaldaftar' => Carbon::today()->format('d-m-Y'),
+                ]);
+        } catch (\Exception $e) {
+            // dd($e->getMessage(), $e->getCode());
+            if ($e->getCode() == 21211 || $e->getCode() == 20404) {
+                return back()->with(['error' => 'Maaf, nomor telepon tidak valid']);
+            }
+            return back()->with(['error' => 'Data gagal ditambahkan: ' . $e->getMessage()]);
+        }
     }
 
     public function deleteantrianadmin($id)
@@ -263,7 +297,7 @@ class DashboardController extends Controller
 
     public function editrekam($od, $id)
     {
-        return view('edit-rekam-admin-form',[
+        return view('edit-rekam-admin-form', [
             'rekam' => Rekam::find($id),
             'obat' => Obat::all(),
             'dokter' => Dokter::all(),
@@ -276,8 +310,8 @@ class DashboardController extends Controller
         $validated = $request->validate([
             'idrekam' => 'required',
             // 'layanan' => 'required',
-            'keluhan' => 'required', 
-            'dokter' => 'required', 
+            'keluhan' => 'required',
+            'dokter' => 'required',
             'diagnosa' => 'required',
             'idpasien' => 'required',
             // 'obat' => '',
@@ -288,13 +322,12 @@ class DashboardController extends Controller
             // 'Tinggi' => '',
             // 'Berat' => '',
             // 'LingkarBadan' => ''
-        ]); 
-        
-        
+        ]);
+
+
         $rekam = Rekam::find($validated['idrekam']);
 
-        if($request->obat != '' && $request->jumlahobat != '')
-        {
+        if ($request->obat != '' && $request->jumlahobat != '') {
             $obat = Obat::find($request->obat);
             $obat->stok = $obat->stok + $rekam->jumlahobat - $request->jumlahobat;
             $obat->save();
@@ -323,7 +356,7 @@ class DashboardController extends Controller
 
     public function indexlaporan()
     {
-        return view('laporan-harian',[
+        return view('laporan-harian', [
             'data' => Rekam::where('laporan', 1)->whereNotNull('diagnosa')->get(),
             'count' => 0
         ]);
@@ -331,7 +364,7 @@ class DashboardController extends Controller
 
     public function clearlaporan()
     {
-        Rekam::where('laporan', 1)->update(['laporan'=>2]);
+        Rekam::where('laporan', 1)->update(['laporan' => 2]);
         return redirect('/laporan-harian')->with('success', 'Berhasil clear data');
     }
 }

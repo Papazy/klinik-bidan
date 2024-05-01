@@ -9,6 +9,12 @@ use App\Models\Dokter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+// require_once 'vendor/autoload.php';
+use Twilio\Rest\Client;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class RekamController extends Controller
 {
@@ -40,19 +46,19 @@ class RekamController extends Controller
      */
     public function store(Request $request)
     {
+
+        // Inisialisasi klien Twilio dan data Twilio
+        $sid = "AC01dae14034bd9fcbf4d4bc2a2ea30887";
+        $token = "64d28bb60c6949fcceada85553157360";
+        $twilio_whatsapp_number = "+14155238886";
+        $twilio_client = new Client($sid, $token);
+
+
         $validate = $request->validate([
             'id_player' => 'required',
-            // 'layanan' => 'required',
             'keluhan' => 'required',
             'jadwal' => 'required',
-        	// 'g-recaptcha-response' => 'required|captcha'
         ],
-        // [
-        //     'g-recaptcha-response' => [
-        //         'required' => 'Please verify that you are not a robot.',
-        //         'captcha' => 'Captcha error! try again later or contact site admin.',
-        //     ],
-        // ],
         );
 
         $data_user = Pasien::where('id', $validate['id_player'])->first();
@@ -60,6 +66,8 @@ class RekamController extends Controller
         $obj_antrian = new Antrian();
         $nomorAntrian = $obj_antrian->generateNoAntrian()['no_antrian'];
         $tanggal = $obj_antrian->generateNoAntrian()['tanggal'];
+
+        
         $data_antrian = Antrian::create([
             'no_antrian' => $nomorAntrian,
             'pasien_id' => $validate['id_player'],
@@ -69,26 +77,45 @@ class RekamController extends Controller
         ]);
 
         $Rekam = Rekam::create([
-            'nomorantrian' => "00" . $nomorAntrian,
+            'id_antrian' => $data_antrian->id,
             'id_pasien' => $validate['id_player'],
-            // 'layanan' => $validate['layanan'],
             'keluhan' => $validate['keluhan'],
-            // 'jadwal' => $validate['jadwal'],
-            // 'id_dokter' => $validate['dokter']
         ]);
+
+        $unique_code = "$nomorAntrian" . Carbon::today()->format('dmy');
+        $qrcode = QrCode::format('png')
+            ->size(300)
+            ->generate("Nomor Antrian: $nomorAntrian\nNama: $request->Nama\nTanggal Daftar: " . Carbon::today()->format('d-m-Y') . "\nJam Daftar: " . Carbon::now()->format('H:i:s') . "\nUnique Code: $unique_code");
+
+        $output_file = '/img/qr-code/img-' . $unique_code . '.png';
+        Storage::disk('public')->put($output_file, $qrcode); //storage/app/public/img/qr-code/img-1557309130.png
+
 
         $latestrekam = Rekam::all()->last();
         $pasienid = $latestrekam->id_pasien;
         $pasientable = Pasien::where('id', $pasienid)->get();
-
+         // Kirim pesan WhatsApp
+         $message = $twilio_client->messages->create(
+            "whatsapp:$data_user->telepon",
+            [
+                "from" => "whatsapp:$twilio_whatsapp_number",
+                "body" => "Terima kasih telah mendaftar di Klinik Desita.\nNomor antrian Anda adalah *$nomorAntrian*\nNama: $request->Nama\nTanggal Daftar: " . Carbon::today()->format('d-m-Y') . "\nJam Daftar: " . Carbon::now()->format('H:i:s') . "\nLink *QR Code*: https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=$unique_code\n"
+            ]
+        );
         foreach ($pasientable as $row):
 
             return redirect('pasien-lama')->with([
-                'addsuccess' => 'Data berhasil ditambahkan',
-                'nomorAntrian' => "" . $nomorAntrian,
-                'nama' => $row->nama,
-                'timestamps' => $Rekam->created_at->format('H:i:s'),
-                'tanggaldaftar' => $Rekam->created_at->format('d-m-Y')
+                'success' => 'Data berhasil ditambahkan',
+                'nomorAntrian' => "$nomorAntrian",
+                'kodepasien' => $data_user->kodepasien,
+                'nama' => $data_user->nama,
+                'timestamps' => Carbon::now()->format('H:i:s'),
+                'tanggaldaftar' => Carbon::today()->format('d-m-Y'),
+                'jadwalAntrian' => $data_antrian->jadwal_antrian->format('d-m-Y'),
+                'jadwalPraktik' => $data_antrian->jadwal_praktek,
+                'qrcode' => $qrcode,
+                'qrpath' => asset("storage" . $output_file), // Tidak perlu asset karena QR Code dihasilkan secara dinamis
+                "message" => "Message sent: " . $message->sid
             ]);
 
         endforeach;

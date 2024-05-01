@@ -9,7 +9,7 @@ class Rekam extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'nomorantrian',
+        'id_antrian',
         'id_pasien',
         'Tanggal Periksa',
         'layanan',
@@ -38,5 +38,9 @@ class Rekam extends Model
 
     public function dokter(){
         return $this->belongsTo(Dokter::class, 'id_dokter');
+    }
+
+    public function antrian(){
+        return $this->belongsTo(Antrian::class, 'id_antrian');
     }
 }

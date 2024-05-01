@@ -18,7 +18,8 @@ class Pasien extends Model
         'telepon',
         'agama',
         'pendidikan',
-        'pekerjaan'
+        'pekerjaan',
+        'catatan'
     ];
     protected $guarded =['id'];
 

@@ -142,7 +142,7 @@ class PasienController extends Controller
 
             // Simpan data rekam medis
             Rekam::create([
-                'nomorantrian' => "00$nomorAntrian",
+                'id_antrian' => $data_antrian->id,
                 'id_pasien' => $data->id,
                 'keluhan' => $request->RekamMedis,
             ]);
@@ -168,7 +168,8 @@ class PasienController extends Controller
                 'nama' => $request->Nama,
                 'timestamps' => Carbon::now()->format('H:i:s'),
                 'tanggaldaftar' => Carbon::today()->format('d-m-Y'),
-                'jadwalAntrian' => $jadwalAntrian,
+                'jadwalAntrian' => $jadwalAntrian->format('d-m-Y'),
+                'jadwalPraktik' => $request->jadwal,
                 'qrcode' => $qrcode,
                 'qrpath' => asset("storage" . $output_file), // Tidak perlu asset karena QR Code dihasilkan secara dinamis
                 "message" => "Message sent: " . $message->sid
@@ -277,9 +278,16 @@ class PasienController extends Controller
 
     public function antrianpasien()
     {
-        $data = Rekam::where('diagnosa', null)->get();
+        $data = Antrian::all();
+        $dates = Antrian::whereDate('jadwal_antrian', '>=', now())
+                ->distinct()
+                ->pluck('jadwal_antrian')
+                ->map(function ($date) {
+                    return \Carbon\Carbon::parse($date)->toDateString();
+                });
         return view('antrian-pasien', [
-            'datarekam' => $data
+            'datarekam' => $data,
+            'dates' => $dates 
         ]);
     }
 
@@ -301,7 +309,7 @@ class PasienController extends Controller
         $validated = [];
         if ($q == "nama") {
             $validated = $request->validate([
-                "Nama" => 'required',
+                "nama" => 'required',
             ]);
         } elseif ($q == "kodepasien") {
             $validated = $request->validate([

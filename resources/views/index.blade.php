@@ -610,7 +610,7 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3973.41470687654
                 </div>
                 <div class="modal-body">
                     <p class="h3">Antrian: <span class="text-primary">{{ Session::get('nomorAntrian', '') }}</span></p>
-                    <p>Jadwal: <span class="text-primary">{{ Session::get('jadwalAntrian', '') }}</span></p>
+                    <p>Jadwal: <span class="text-primary">{{ Session::get('jadwalPraktik', '') }}, {{ Session::get('jadwalAntrian', '') }}</span></p>
                     <p class="h3">Nama: <span class="text-primary">{{ Session::get('nama', '') }}</span></p>
                     <p class="h5">kode pasien: <span class="text-primary">{{ Session::get('kodepasien', '') }}</span></p>
                     <p>Daftar pada jam: <span class="text-primary">{{ Session::get('timestamps', '') }}</span></p>

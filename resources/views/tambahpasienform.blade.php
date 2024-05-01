@@ -169,8 +169,8 @@
             <div class="form-group row mt-2">
                 <label class="col-sm-2 col-form-label">Catatan</label>
                 <div class="col-sm-5">
-                        <textarea type="text" name="RekamMedis" class="form-control" cols="30" rows="5" 
-                        placeholder="Catatan pasien"
+                        <textarea type="text" name="Catatan" class="form-control" cols="30" rows="5" 
+                        placeholder="Catatan pasien ..."
                         required oninvalid="this.setCustomValidity('isi...')"
                                     oninput="setCustomValidity('')"></textarea>
                 </div>
@@ -202,6 +202,69 @@
         </form>
     </div>
 
+
+    
+    <!--------------------------------------------------------modal kartu antrian----------------------------------------------------------------------------------->
+    <div class="modal fade" id="antrian" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="antrianLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg"> <!-- Tambahkan kelas modal-lg di sini -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <img src="{{ asset('img/logo.png') }}" style="float: left; width: 55px; height: 55px;" class="me-2" alt="Logo">
+                    <h5 class="modal-title">Berhasil Menambahkan Pasien</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="h3">Nama: <span class="text-primary">{{ Session::get('nama', '') }}</span></p>
+                    <p class="h5">kode pasien: <span class="text-primary">{{ Session::get('kodepasien', '') }}</span></p>
+                </div>
+                <div class="modal-footer">
+                    <p>Tanggal: <span class="text-primary">{{ Session::get('tanggaldaftar', '') }}</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+
+    <!--------------------------------------------------------modal error----------------------------------------------------------------------------------->
+
+    <div class="modal fade" id="error" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="antrianLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <img src="{{ asset('img/logo.png') }}" style="float:left; width:55px; height:55px;" class="mr-3" alt="Logo"> <!-- Perhatikan penyesuaian gaya pada tag ini -->
+                    <h5 class="modal-title">Klinik {{ env('APP_NAME') }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @if (Session::has('error'))
+                    <div class="alert alert-danger" role="alert">
+                        {{ Session::get('error') }}
+                    </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script>
+        @if (Session::has("error"))
+        $(document).ready(function() {
+            $('#error').modal('show')
+        });
+
+        @endif
+    </script>
+
+    <script>
+        @if(Session::has('success'))
+        $(document).ready(function() {
+            $('#antrian').modal('show')
+        });
+        @endif
+
+    </script>
     <script>
         function setInputFilter(textbox, inputFilter, errMsg) {
             ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop", "focusout"].forEach(

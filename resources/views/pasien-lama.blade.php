@@ -30,7 +30,7 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="#page-top"><img src="{{ asset('img/logo.png') }}" style=”float:left; width="55" ;height="55" ” />KLINIK</a>
+            <a class="navbar-brand" href="/#page-top"><img src="{{ asset('img/logo.png') }}" style=”float:left; width="55" ;height="55" ” />KLINIK</a>
             <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
                 <i class="fas fa-bars"></i>
@@ -109,7 +109,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Nama Lengkap</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" name="Nama" placeholder="Nama Lengkap" required="required" oninvalid="this.setCustomValidity('Nama tidak boleh kosong')" oninput="setCustomValidity('')">
+                        <input type="text" class="form-control" name="nama" placeholder="Nama Lengkap" required="required" oninvalid="this.setCustomValidity('Nama tidak boleh kosong')" oninput="setCustomValidity('')">
                     </div>
                 </div>
                 </--------------------------------------------------------Lahir-----------------------------------------------------------------------------------* />
@@ -295,61 +295,53 @@
     </div>
     <!--------------------------------------------------------modal kartu antrian----------------------------------------------------------------------------------->
     <div class="modal fade" id="antrian" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="antrianLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div id="kartuantrian2">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">
-                            <img src="{{ asset('img/logo.png') }}" style=”float:left; width="55" ;height="55" ” />Klinik {{ env('APP_NAME') }}
-                        </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p class="h3">Nomor Antrian : <span class="text-primary">{{ Session::has('nomorAntrian') ? Session::get('nomorAntrian') : '' }}</span>
-                        </p>
-                        <p class="h3">Atas Nama : <span class="text-primary">{{ Session::has('nama') ? Session::get('nama') : '' }}</span>
-                        </p>
-                        <p>Daftar pada jam : <span class="text-primary">{{ Session::has('timestamps') ? Session::get('timestamps') : '' }}</span>
-                        </p>
-                    </div>
-                    <div class="modal-footer">
-                        <p>Tanggal : <span class="text-primary">{{ Session::has('tanggaldaftar') ? Session::get('tanggaldaftar') : '' }}</span>
-                        </p>
-
-                        <a type="button" class="btn btn-secondary" href="/antrian-pasien">
-                            <i class="fas fa-users me-2"></i>
-                            Cek Antrian
-                        </a>
-                        <button type="button" class="btn btn-primary" id="download">Simpan</button>
-                    </div>
+        <div class="modal-dialog modal-dialog-centered modal-lg"> <!-- Tambahkan kelas modal-lg di sini -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <img src="{{ asset('img/logo.png') }}" style="float: left; width: 55px; height: 55px;" class="me-2" alt="Logo">
+                    <h5 class="modal-title">Klinik {{ env('APP_NAME') }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="h3">Antrian: <span class="text-primary">{{ Session::get('nomorAntrian', '') }}</span></p>
+                    <p>Jadwal: <span class="text-primary">{{ Session::get('jadwalPraktik', '') }}, {{ Session::get('jadwalAntrian', '') }}</span></p>
+                    <p class="h3">Nama: <span class="text-primary">{{ Session::get('nama', '') }}</span></p>
+                    <p class="h5">kode pasien: <span class="text-primary">{{ Session::get('kodepasien', '') }}</span></p>
+                    <p>Daftar pada jam: <span class="text-primary">{{ Session::get('timestamps', '') }}</span></p>
+                    <img src={!! Session::has('qrpath') ? Session::get('qrpath') : '' !!} width="300" alt="QR Code">
+                </div>
+                <div class="modal-footer">
+                    <p>Tanggal: <span class="text-primary">{{ Session::get('tanggaldaftar', '') }}</span></p>
+                    <a href="/antrian-pasien" class="btn btn-secondary"><i class="fas fa-users me-2"></i>Cek Antrian</a>
+                    <button type="button" class="btn btn-primary" id="download">Simpan</button>
                 </div>
             </div>
         </div>
     </div>
+    
+    
 
     <!--------------------------------------------------------modal error----------------------------------------------------------------------------------->
+
     <div class="modal fade" id="error" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="antrianLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div id="kartuantrian">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">
-                            <img src="{{ asset('img/logo.png') }}" style=”float:left; width="55" ;height="55" ” />Klinik {{ env('APP_NAME') }}
-                        </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <img src="{{ asset('img/logo.png') }}" style="float:left; width:55px; height:55px;" class="mr-3" alt="Logo"> <!-- Perhatikan penyesuaian gaya pada tag ini -->
+                    <h5 class="modal-title">Klinik {{ env('APP_NAME') }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @if (Session::has('error'))
+                    <div class="alert alert-danger" role="alert">
+                        {{ Session::get('error') }}
                     </div>
-                    <div class="modal-body">
-                        @foreach ($errors->all() as $item)
-                        <div class="alert alert-danger" role="alert">
-                            {{ $item }}
-                        </div>
-                        @endforeach
-                    </div>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
-
+    
 
 
     <!--------------------------------------------------------Bootstrap JS----------------------------------------------------------------------------------->

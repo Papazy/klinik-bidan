@@ -18,11 +18,9 @@ return new class extends Migration
             $table->integer('laporan')->default('1');
             $table->timestamps();
             $table->integer('id_pasien')->references('id')->on('pasiens');
-            $table->string('nomorantrian');
+            $table->string('id_antrian')->references('id')->on('antrians');
             $table->date('tanggalperiksa')->nullable();
-            // $table->string('layanan');
             $table->string('keluhan');
-            // $table->integer('id_dokter')->references('id')->on('dokter');
             $table->string('diagnosa')->nullable();
             $table->integer('id_obat')->references('id')->on('obat')->nullable();
             $table->string('jumlahobat')->nullable();
@@ -30,7 +28,6 @@ return new class extends Migration
             $table->string('rawat')->nullable();
             $table->string('lamabaru')->nullable();
             $table->string('darah')->nullable();
-            // $table->string('tinggi')->nullable();
             $table->string('berat')->nullable();
             $table->string('pinggang')->nullable();
         });

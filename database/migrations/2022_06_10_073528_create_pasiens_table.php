@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('agama');
             // $table->string('pendidikan')->nullable();
             $table->string('pekerjaan')->nullable();
+            $table->string('catatan')->nullable();
             
             $table->timestamps();
         });
