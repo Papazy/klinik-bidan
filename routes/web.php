@@ -53,6 +53,7 @@ Route::group(['middleware' => 'isAdmin'], function () {
     Route::get('pasien/{od:od}/editrekam/{id:id}', [DashboardController::class, 'editrekam'])->middleware('auth');
     Route::get('edit-stok/{id}', [ObatController::class, 'editstok'])->middleware('auth');
     Route::get('/tambahpasienadmin', [DashboardController::class, 'tambahpasienform'])->middleware('auth');
+    Route::post('tambahantrianpasienbaruadmin', [DashboardController::class, 'tambahantrianpasien'])->middleware('auth');
     Route::get('/pendaftaran', [DashboardController::class, 'pendaftaran'])->middleware('auth');
     Route::get('/poli-form', [PoliController::class, 'index'])->middleware('auth');
     Route::get("/laporan-harian", [DashboardController::class, 'indexlaporan'])->middleware('auth');

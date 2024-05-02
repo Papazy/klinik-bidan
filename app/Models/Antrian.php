@@ -41,17 +41,24 @@ class Antrian extends Model
     
         $tanggal = $waktu_sekarang->toDateString();
     
-        $jumlah_antrian = Antrian::whereDate('tanggal_daftar_antrian', $tanggal)->count();
+        $jumlah_antrian = Antrian::whereDate('jadwal_antrian', $tanggal)->count();
     
         $maksimal_antrian_per_hari = 15;
-    
-        if ($jumlah_antrian >= $maksimal_antrian_per_hari) {
-            $tanggal = $waktu_sekarang->addDay()->toDateString();
-            $nomor_antrian = 1;
-        } else {
+        if($jumlah_antrian >= $maksimal_antrian_per_hari){
+
+            while ($jumlah_antrian >= $maksimal_antrian_per_hari) {
+                $waktu_sekarang = $waktu_sekarang->addDay();
+                $tanggal = $waktu_sekarang->toDateString();
+                $jumlah_antrian = Antrian::whereDate('jadwal_antrian', $tanggal)->count();
+            } 
+            $nomor_antrian = $jumlah_antrian + 1;
+        }else{
             $nomor_antrian = $jumlah_antrian + 1;
         }
-    
+        
+        // dd($waktu_sekarang);
+        // dd($tanggal);
+        // dd($jumlah_antrian);
         return ['no_antrian' => $nomor_antrian, 'tanggal' => $tanggal];
 
     }

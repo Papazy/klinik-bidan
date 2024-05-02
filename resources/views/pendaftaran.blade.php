@@ -33,18 +33,6 @@
                 </div>
             </div>
             </--------------------------------------------------------Lahir-----------------------------------------------------------------------------------* />
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Lahir</label>
-                <div class="col-sm-5">
-                    <input type="date" class="form-control @error('Lahir') is-invalid @enderror" name="Lahir"
-                        placeholder="Lahir">
-                    @error('Lahir')
-                        <div class="invalid-feedback">
-                            "tanggal lahir masih kosong
-                        </div>
-                    @enderror
-                </div>
-            </div>
             <br>
             <button type="submit" class="btn btn-warning col-sm-2">
                 <i class="fas fa-search text-white"></i>  Cari Pasien Lama</button>
