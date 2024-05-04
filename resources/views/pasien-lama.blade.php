@@ -293,6 +293,8 @@
     <div class="copyright py-4 text-center text-white">
         <div class="container"><small>Copyright &copy; Klinik {{ env('APP_NAME') }} 2022</small></div>
     </div>
+
+
     <!--------------------------------------------------------modal kartu antrian----------------------------------------------------------------------------------->
     <div class="modal fade" id="antrian" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="antrianLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg"> <!-- Tambahkan kelas modal-lg di sini -->
@@ -375,19 +377,16 @@
         $(document).ready(function() {
             $('#pasienlamaf').modal('show')
         });
-        @elseif(Session::has('addsuccess'))
-        $(document).ready(function() {
-            $('#antrian').modal('show')
-        });
         @endif
+        
+        </script>
 
-    </script>
-
-    <!--------------------------------------------------------modal antrian----------------------------------------------------------------------------------->
-    <script>
-        @if(Session::has('nomorAntrian'))
-        $(document).ready(function() {
-            $('#antrian').modal('show')
+<!--------------------------------------------------------modal antrian----------------------------------------------------------------------------------->
+<script>
+    @if(Session::has('nomorAntrian'))
+    $(document).ready(function() {
+        $('#antrian').modal('show')
+        $('#pasienlamas').modal('hide')
         });
         @endif
 

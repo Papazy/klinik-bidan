@@ -117,32 +117,31 @@ class DashboardController extends Controller
     }
 
     public function tambahantrianpasien(Request $request)
-    {
-        {
+    { {
             try {
                 // Inisialisasi klien Twilio dan data Twilio
                 $sid = "AC01dae14034bd9fcbf4d4bc2a2ea30887";
                 $token = "64d28bb60c6949fcceada85553157360";
                 $twilio_whatsapp_number = "+14155238886";
                 $twilio_client = new Client($sid, $token);
-    
+
                 // Validasi data input
                 $this->validate($request, [
-                   'user_id' => 'required',
+                    'user_id' => 'required',
                     'jadwal' => 'required'
                 ]);
 
-    
+
                 // Simpan data pasien atau temukan data pasien yang sudah ada
                 $data = Pasien::where('kodepasien', $request->user_id)->first();
                 $client_number = $data->telepon;
-               
+
                 // Mendapatkan nomor antrian berikutnya
                 $obj_antrian = new Antrian();
                 $resAntrian = $obj_antrian->generateNoAntrian();
                 $nomorAntrian = $resAntrian["no_antrian"];
                 $jadwalAntrian = $resAntrian["tanggal"];
-    
+
                 // Buat nomor antrian dan QR Code
                 $data_antrian = Antrian::create([
                     'no_antrian' => $nomorAntrian,
@@ -151,35 +150,28 @@ class DashboardController extends Controller
                     'jadwal_antrian' => $jadwalAntrian,
                     'tanggal_daftar_antrian' => Carbon::today()
                 ]);
-    
-                $unique_code = "$nomorAntrian" . Carbon::today()->format('dmy');
-                $qrcode = QrCode::format('png')
-                    ->size(300)
-                    ->generate("Nomor Antrian: $nomorAntrian\nNama: $request->Nama\nTanggal Daftar: " . Carbon::today()->format('d-m-Y') . "\nJam Daftar: " . Carbon::now()->format('H:i:s') . "\nUnique Code: $unique_code");
-    
-                $output_file = '/img/qr-code/img-' . $unique_code . '.png';
-                Storage::disk('public')->put($output_file, $qrcode); //storage/app/public/img/qr-code/img-1557309130.png
-    
+
+               
+
+                $unique_code = $data_antrian->id . "-" . $data->kode_pasien;
+                // Generate Qr Code
+                $output_file = Antrian::generateQrCode($nomorAntrian, $data->nama, $unique_code);
+                // Kirim pesan WhatsApp
+                $message = Pasien::kirimPesanWhatsApp($client_number, $data->kodepasien, $data_antrian->jadwal_antrian, $data_antrian->jadwal_praktek, $nomorAntrian, $data->nama, $unique_code);
+
                 // Simpan data rekam medis
                 Rekam::create([
                     'id_antrian' => $data_antrian->id,
                     'id_pasien' => $data->id,
                     'keluhan' => "-",
                 ]);
-    
-                // Kirim pesan WhatsApp
-                $message = $twilio_client->messages->create(
-                    "whatsapp:$client_number",
-                    [
-                        "from" => "whatsapp:$twilio_whatsapp_number",
-                        "body" => "Terima kasih telah mendaftar di Klinik Desita.\nNomor antrian Anda adalah *$nomorAntrian*\nNama: $request->Nama\nTanggal Daftar: " . Carbon::today()->format('d-m-Y') . "\nJam Daftar: " . Carbon::now()->format('H:i:s') . "\nLink *QR Code*: https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=$unique_code\n"
-                    ]
-                );
-    
+
+
+
                 // Log hasil pengiriman
                 Log::info("Message sent: " . $message->sid);
                 // dd($message);
-    
+
                 // Kembalikan respons dengan data yang diperlukan
                 return back()->with([
                     'successAddAntrian' => 'Data berhasil ditambahkan',
@@ -190,7 +182,6 @@ class DashboardController extends Controller
                     'tanggaldaftar' => Carbon::today()->format('d-m-Y'),
                     'jadwalAntrian' => Carbon::parse($jadwalAntrian)->format('d-m-Y'),
                     'jadwalPraktik' => $request->jadwal,
-                    'qrcode' => $qrcode,
                     'qrpath' => asset("storage" . $output_file), // Tidak perlu asset karena QR Code dihasilkan secara dinamis
                     "message" => "Message sent: " . $message->sid
                 ]);
@@ -201,7 +192,7 @@ class DashboardController extends Controller
                 }
                 return back()->with(['error' => 'Data gagal ditambahkan: ' . $e->getMessage()]);
             }
-    }
+        }
     }
     public function cekpasienlama(Request $request)
     {
@@ -302,7 +293,7 @@ class DashboardController extends Controller
         try {
             // Validasi data input
             $this->validate($request, [
-                
+
                 'Nama' => 'required',
                 'Alamat' => 'required',
                 'Lahir' => 'required',
@@ -455,5 +446,27 @@ class DashboardController extends Controller
     {
         Rekam::where('laporan', 1)->update(['laporan' => 2]);
         return redirect('/laporan-harian')->with('success', 'Berhasil clear data');
+    }
+    public function checkqr(Request $request){
+         // Proses data hasil pemindaian
+    $decodedText = $request->decodedText;
+    $decodedData = explode('-', $decodedText);
+    $antrianId = $decodedData[0];
+    $userId = $decodedData[1];
+
+    $dataAntrian = Antrian::find($antrianId);
+    $dataUser = Pasien::where("kodepasien",$userId)->first();
+    $jadwalAntrian = Carbon::parse($dataAntrian->jadwal_antrian)->format('d-m-Y') . ", " . $dataAntrian->jadwal_praktek;
+    $dataAntrian->jadwal_antrian = $jadwalAntrian;
+    $data = [
+        'antrian' => $dataAntrian,
+        'user' => $dataUser,
+        'jadwal' => $jadwalAntrian,
+    ];
+
+
+    return response()->json([
+        'data' => $data,
+    ]);
     }
 }

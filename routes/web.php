@@ -59,7 +59,8 @@ Route::group(['middleware' => 'isAdmin'], function () {
     Route::get("/laporan-harian", [DashboardController::class, 'indexlaporan'])->middleware('auth');
     Route::get('/akun', [UserController::class, 'index'])->middleware('auth');
     Route::get('/tambah-akun', [UserController::class, 'tambahakun'])->middleware('auth');
-
+    
+    Route::post('/checkqr', [DashboardController::class, 'checkqr'])->middleware('auth');
     Route::post('/updaterekamadmin', [DashboardController::class, 'updaterekam'])->middleware('auth');
     Route::post('/cekpasienlamaadmin', [DashboardController::class, 'cekpasienlama'])->middleware('auth');
     Route::post('/addrekamadmin', [DashboardController::class, 'addrekam'])->middleware('auth');

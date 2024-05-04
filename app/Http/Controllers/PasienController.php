@@ -12,10 +12,10 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use PDO;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
 // require_once 'vendor/autoload.php';
 use Twilio\Rest\Client;
 use Illuminate\Support\Facades\Log;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -126,19 +126,20 @@ class PasienController extends Controller
             // Buat nomor antrian dan QR Code
             $data_antrian = Antrian::create([
                 'no_antrian' => $nomorAntrian,
-                'pasien_id' => $data->id,
+                'pasien_id' => $data->kode_pasien,
                 'jadwal_praktek' => $request->jadwal,
                 'jadwal_antrian' => $jadwalAntrian,
                 'tanggal_daftar_antrian' => Carbon::today()
             ]);
 
-            $unique_code = "$nomorAntrian" . Carbon::today()->format('dmy');
-            $qrcode = QrCode::format('png')
-                ->size(300)
-                ->generate("Nomor Antrian: $nomorAntrian\nNama: $request->Nama\nTanggal Daftar: " . Carbon::today()->format('d-m-Y') . "\nJam Daftar: " . Carbon::now()->format('H:i:s') . "\nUnique Code: $unique_code");
+            $unique_code = $data_antrian->id . "-" . $data->kodepasien;
+            // Generate Qr Code
+            $output_file = Antrian::generateQrCode($nomorAntrian, $data->nama, $unique_code);
+            // Kirim pesan WhatsApp
+            $message = Pasien::kirimPesanWhatsApp($client_number, $data->kodepasien, $data_antrian->jadwal_antrian, $data_antrian->jadwal_praktek, $nomorAntrian, $data->nama, $unique_code);
 
-            $output_file = '/img/qr-code/img-' . $unique_code . '.png';
-            Storage::disk('public')->put($output_file, $qrcode); //storage/app/public/img/qr-code/img-1557309130.png
+
+
 
             // Simpan data rekam medis
             Rekam::create([
@@ -147,14 +148,6 @@ class PasienController extends Controller
                 'keluhan' => $request->RekamMedis,
             ]);
 
-            // Kirim pesan WhatsApp
-            $message = $twilio_client->messages->create(
-                "whatsapp:$client_number",
-                [
-                    "from" => "whatsapp:$twilio_whatsapp_number",
-                    "body" => "Terima kasih telah mendaftar di Klinik Desita.\nNomor antrian Anda adalah *$nomorAntrian*\nNama: $request->Nama\nTanggal Daftar: " . Carbon::today()->format('d-m-Y') . "\nJam Daftar: " . Carbon::now()->format('H:i:s') . "\nLink *QR Code*: https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=$unique_code\n"
-                ]
-            );
 
             // Log hasil pengiriman
             Log::info("Message sent: " . $message->sid);
@@ -170,7 +163,6 @@ class PasienController extends Controller
                 'tanggaldaftar' => Carbon::today()->format('d-m-Y'),
                 'jadwalAntrian' => Carbon::parse($jadwalAntrian)->format('d-m-Y'),
                 'jadwalPraktik' => $request->jadwal,
-                'qrcode' => $qrcode,
                 'qrpath' => asset("storage" . $output_file), // Tidak perlu asset karena QR Code dihasilkan secara dinamis
                 "message" => "Message sent: " . $message->sid
             ]);
