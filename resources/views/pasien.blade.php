@@ -23,7 +23,7 @@
     <a href="/tambahpasienadmin" type="button" class="btn btn-success">
         <i class="fas fa-plus text-white"></i> <i class="fas fa-address-book text-white"></i> Tambah Pasien</a>
     <br />
-    <div class="table-responsive">
+    <div class="table-responsive w-full">
         <table class="table table-flush" id="products-list">
             <thead class="thead-dark">
                 <tr>
@@ -38,7 +38,7 @@
                     <th>Agama</th>
                     {{-- <th>Pendidikan</th> --}}
                     <th>Pekerjaan</th>
-                    <th>Tools</th>
+                    <th>Edit</th>
                 </tr>
             </thead>
             <tbody>

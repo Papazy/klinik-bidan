@@ -560,7 +560,7 @@ $mappp = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3973.41470687654
                             <div class="col-sm">
                                 {{-- <input type="text" class="form-control" name="RekamMedis"
                                     placeholder="Anda sakit apa, dan sudah berapa lama?"> --}}
-                                <textarea type="text" name="RekamMedis" class="form-control" cols="30" rows="5" placeholder="Jelaskan keluhan anda, dan sudah berapa lama?" required oninvalid="this.setCustomValidity('jelaskan dahulu...')" oninput="setCustomValidity('')"></textarea>
+                                <textarea type="text" name="RekamMedis" class="form-control" cols="30" rows="5" placeholder="Jelaskan tujuan anda atau berikan keluhan yang anda ingin sampaikan?" required oninvalid="this.setCustomValidity('jelaskan dahulu...')" oninput="setCustomValidity('')"></textarea>
                             </div>
                         </div>
 

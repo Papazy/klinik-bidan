@@ -168,7 +168,7 @@ class PasienController extends Controller
                 'nama' => $request->Nama,
                 'timestamps' => Carbon::now()->format('H:i:s'),
                 'tanggaldaftar' => Carbon::today()->format('d-m-Y'),
-                'jadwalAntrian' => $jadwalAntrian->format('d-m-Y'),
+                'jadwalAntrian' => Carbon::parse($jadwalAntrian)->format('d-m-Y'),
                 'jadwalPraktik' => $request->jadwal,
                 'qrcode' => $qrcode,
                 'qrpath' => asset("storage" . $output_file), // Tidak perlu asset karena QR Code dihasilkan secara dinamis
