@@ -39,7 +39,7 @@
                 <h6 class="collapse-header">Daftar Harian</h6>
                 <a class="collapse-item fas fa-pen" href="/pendaftaran"> Pendaftaran Pasien</a>
                 <a class="collapse-item fas fa-users" href="/antrian-pasien-admin"> Antrian Pasien</a>
-                <a class="collapse-item fas fa-stethoscope" href="/diagnosa"> diagnosa/resep</a>
+                {{-- <a class="collapse-item fas fa-stethoscope" href="/diagnosa"> diagnosa/resep</a> --}}
                 {{-- <a class="collapse-item fas fa-folder-open" href="/laporan-harian"> Laporan Harian</a> --}}
 
             </div>
